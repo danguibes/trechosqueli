@@ -200,6 +200,50 @@ mark{background:linear-gradient(105deg,rgba(245,220,85,0) 0%,var(--grifo) 4%,var
 }
 .ficha.apontada{border-color:var(--caneta);box-shadow:0 0 0 3px rgba(34,64,154,.16)}
 
+/* ---------- novo trecho ---------- */
+.btn-novo{
+  font-family:'Archivo',sans-serif;font-size:13px;font-weight:600;white-space:nowrap;
+  padding:9px 14px;border-radius:var(--r);background:var(--tinta);color:var(--papel-alto);
+}
+.btn-novo:hover{background:var(--caneta)}
+.modal{
+  position:fixed;inset:0;z-index:100;background:rgba(20,28,39,.55);
+  display:none;align-items:flex-start;justify-content:center;padding:26px 16px;overflow-y:auto;
+}
+.modal.aberto{display:flex}
+.folha{
+  background:var(--papel);border:1px solid var(--linha);border-radius:var(--r);
+  width:100%;max-width:660px;padding:22px 24px 20px;box-shadow:0 24px 70px rgba(20,28,39,.4);
+}
+.folha h2{
+  font-family:'Archivo',sans-serif;font-size:17px;font-weight:700;letter-spacing:-.02em;
+  margin:0 0 3px;
+}
+.folha .sub{font-family:'Archivo',sans-serif;font-size:12.5px;color:var(--tinta-fraca);margin:0 0 16px}
+.linha-campos{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:10px}
+.linha-campos .entrada{flex:1;min-width:150px}
+.folha label.rot{display:block;margin:0 0 5px}
+.solta{
+  border:1px dashed var(--linha);border-radius:var(--r);background:var(--papel-alto);
+  padding:16px;text-align:center;margin-bottom:12px;cursor:pointer;
+}
+.solta:hover,.solta.sobre{border-color:var(--caneta);background:#F4F6FB}
+.solta .txt{font-family:'Archivo',sans-serif;font-size:13px;color:var(--tinta-fraca)}
+.solta img{max-height:210px;max-width:100%;border-radius:2px;border:1px solid var(--linha);display:block;margin:0 auto 8px}
+.folha .acoes{display:flex;gap:9px;align-items:center;flex-wrap:wrap;margin-top:14px}
+.folha .aviso-form{
+  font-family:'Archivo',sans-serif;font-size:12px;color:var(--tinta-fraca);
+  margin-top:10px;line-height:1.5;
+}
+.selo-novo{
+  font-family:'Archivo',sans-serif;font-size:10.5px;font-weight:600;padding:1.5px 6px;
+  border-radius:100px;background:var(--caneta);color:#fff;
+}
+.selo-espera{
+  font-family:'Archivo',sans-serif;font-size:10.5px;font-weight:600;padding:1.5px 6px;
+  border-radius:100px;border:1px solid var(--grifo-forte);background:#FFFBE6;color:var(--tinta);
+}
+
 </style>
 </head>
 <body>
@@ -212,6 +256,7 @@ mark{background:linear-gradient(105deg,rgba(245,220,85,0) 0%,var(--grifo) 4%,var
       <input class="busca" id="busca" type="search" placeholder="Buscar no texto, no autor, na obra…" autocomplete="off" spellcheck="false">
       <button class="limpar-busca" id="limparBusca" title="Limpar busca" aria-label="Limpar busca">&times;</button>
     </div>
+    <button class="btn-novo" id="btnNovo">+ novo trecho</button>
     <div class="contagem rotulo"><b id="cont">0</b> de <span id="total">0</span> trechos</div>
   </div>
 </header>
@@ -299,6 +344,35 @@ mark{background:linear-gradient(105deg,rgba(245,220,85,0) 0%,var(--grifo) 4%,var
   <div class="cap" id="lupaCap"></div>
 </div>
 <div class="toast" id="toast"></div>
+<div class="modal" id="modalNovo">
+  <div class="folha">
+    <h2 id="tituloForm">Novo trecho</h2>
+    <p class="sub">A foto da página, o texto e de quem é.</p>
+
+    <div class="solta" id="solta">
+      <div class="txt" id="soltaTxt">Toque para escolher a foto da página<br>— ou tire uma agora</div>
+    </div>
+    <input type="file" id="inFoto" accept="image/*" hidden>
+
+    <div class="linha-campos">
+      <input class="entrada" id="fAutor" placeholder="Autor" list="lstAutores" autocomplete="off">
+      <input class="entrada" id="fObra" placeholder="Obra (se tiver)" list="lstObras" autocomplete="off">
+      <input class="entrada" id="fData" type="date" style="flex:0 0 150px">
+    </div>
+
+    <div class="ferramentas" id="ferrNovo"></div>
+    <div class="campo" id="fTexto" contenteditable="true" spellcheck="true"></div>
+    <div class="temas-linha" id="fTemasNovo" style="margin:10px 0 0"></div>
+
+    <div class="acoes">
+      <button class="btn primario" id="salvaNovo">Salvar</button>
+      <button class="btn" id="cancelaNovo">Cancelar</button>
+      <button class="btn" id="ocrNovo">Transcrever a foto</button>
+      <span class="aviso-form" id="statusForm"></span>
+    </div>
+    <div class="aviso-form" id="notaForm"></div>
+  </div>
+</div>
 <datalist id="lstAutores"></datalist>
 <datalist id="lstObras"></datalist>
 
@@ -306,7 +380,8 @@ mark{background:linear-gradient(105deg,rgba(245,220,85,0) 0%,var(--grifo) 4%,var
 <script>
 (function(){
 'use strict';
-const DADOS = JSON.parse(document.getElementById('dados').textContent);
+let DADOS = JSON.parse(document.getElementById('dados').textContent);
+const ORIGINAIS = DADOS.length;
 const $ = s => document.querySelector(s);
 const el = (t,c) => { const e=document.createElement(t); if(c) e.className=c; return e; };
 const VAZIO = ()=>({fav:{}, htm:{}, temas:{}, autor:{}, obra:{}, del:{}});
@@ -533,7 +608,10 @@ function pintaTexto(caixa, html){
 }
 
 /* ---------- ficha ---------- */
-function caminhoImg(r){ return (blobs && blobs[r.file]) ? blobs[r.file] : r.img; }
+function caminhoImg(r){
+  if(r.foto) return r.foto;
+  return (blobs && blobs[r.file]) ? blobs[r.file] : r.img;
+}
 let imgOk=0, imgFalha=0, avisadoImg=false;
 
 function ficha(r){
@@ -551,6 +629,8 @@ function ficha(r){
     meta.appendChild(o);
   }
   if(excluido(r)){ const s = el('span','selo'); s.textContent='excluído'; meta.appendChild(s); }
+  if(r.novo && !r.pendente){ const s = el('span','selo-novo'); s.textContent='meu'; meta.appendChild(s); }
+  if(r.pendente){ const s = el('span','selo-espera'); s.textContent='não publicado'; meta.appendChild(s); }
   const d = el('span','data'); d.textContent = r.data || 'sem data'; meta.appendChild(d);
   esq.appendChild(meta);
 
@@ -588,7 +668,7 @@ function ficha(r){
 
       const ed = el('button','acao'+(editado(r)?' on':''));
       ed.innerHTML = '✎ corrigir'+(editado(r)?' (revisado)':'');
-      ed.onclick = ()=>{ editando = r.id; pintaLista(); };
+      ed.onclick = ()=>{ if(r.novo) abreForm(r); else { editando = r.id; pintaLista(); } };
       rod.appendChild(ed);
 
       const cp = el('button','acao'); cp.innerHTML = '⧉ copiar';
@@ -837,7 +917,7 @@ function abreLupa(r){
 }
 $('#lupa').onclick = e => { if(e.target.id !== 'lupaImg') $('#lupa').classList.remove('aberta'); };
 document.addEventListener('keydown', e=>{
-  if(e.key === 'Escape'){ $('#lupa').classList.remove('aberta'); fechaRail(); }
+  if(e.key === 'Escape'){ $('#lupa').classList.remove('aberta'); fechaRail(); fechaForm(); }
   const t = document.activeElement.tagName;
   if(e.key === '/' && t!=='INPUT' && t!=='TEXTAREA' && !document.activeElement.isContentEditable){
     e.preventDefault(); $('#busca').focus();
@@ -914,6 +994,29 @@ $('#limpaTudo').onclick = ()=>{
   if(!confirm('Apagar marcações, correções, temas e exclusões salvos neste navegador? Não dá para desfazer.')) return;
   meu = VAZIO(); base = VAZIO(); grava(); recalcFacetas(); atualiza(); aviso('Tudo apagado.');
 };
+
+/* ---------- trechos novos ---------- */
+const CHAVE_NOVOS = 'tql_novos';
+let novosPub = [];   // já publicados, vindos do novos.json
+let novosLoc = [];   // criados aqui e ainda não publicados (guardam a foto em dataURL)
+try { novosLoc = JSON.parse(localStorage.getItem(CHAVE_NOVOS) || '[]'); } catch(e){}
+
+function gravaNovos(){
+  try { localStorage.setItem(CHAVE_NOVOS, JSON.stringify(novosLoc)); }
+  catch(e){ aviso('Não coube na memória do navegador. Publique os trechos novos antes de criar mais.'); }
+}
+function montaRegistro(n){
+  const busca = semAcento([n.texto, n.autor, n.obra, (n.temas||[]).join(' ')].join(' '));
+  return {id:n.id, img:n.img, file:n.file, data:n.data, ts:n.ts,
+          legenda:(n.obra? n.obra+' — ':'')+n.autor, obra:n.obra, autor:n.autor,
+          texto:n.texto, temas:n.temas||[], busca, rep:0, novo:1,
+          pendente: !!n.foto, foto:n.foto};
+}
+function remontaDados(){
+  const juntos = novosPub.concat(novosLoc.filter(n=> !novosPub.some(p=> p.id === n.id)));
+  DADOS = DADOS.slice(0, ORIGINAIS).concat(juntos.map(montaRegistro));
+  $('#total').textContent = DADOS.length;
+}
 
 /* ---------- compartilhar ---------- */
 function linkDe(r){ return location.origin + location.pathname + '#t' + r.id; }
@@ -1109,6 +1212,177 @@ document.addEventListener('click', ()=>{
   document.querySelectorAll('.popover.aberto').forEach(x=>x.classList.remove('aberto'));
 });
 
+/* ---------- formulário do trecho novo ---------- */
+const form = {foto:null, temas:[], editando:null};
+
+function abreForm(r){
+  form.foto = null; form.temas = []; form.editando = r || null;
+  $('#tituloForm').textContent = r ? 'Editar trecho meu' : 'Novo trecho';
+  $('#fAutor').value = r ? autorDe(r) : '';
+  $('#fObra').value = r ? obraDe(r) : '';
+  $('#fData').value = r ? r.data : new Date().toISOString().slice(0,10);
+  $('#fTexto').innerHTML = r ? htmlDe(r) : '';
+  form.temas = r ? temasDe(r).slice() : [];
+  if(r) form.foto = r.foto || null;
+  mostraFoto(r ? caminhoImg(r) : null);
+  pintaTemasForm();
+  $('#statusForm').textContent = '';
+  $('#notaForm').textContent = (REPO && token)
+    ? 'Ao salvar, o trecho e a foto vão direto para o repositório.'
+    : 'Sem token, o trecho fica só neste aparelho. Guarde um token na barra lateral para publicar.';
+  $('#salvaNovo').textContent = (REPO && token) ? 'Salvar e publicar' : 'Salvar aqui';
+  $('#modalNovo').classList.add('aberto');
+  setTimeout(()=>$('#fAutor').focus(), 60);
+}
+function fechaForm(){ $('#modalNovo').classList.remove('aberto'); }
+function mostraFoto(src){
+  const w = $('#solta');
+  w.innerHTML = '';
+  if(src){
+    const im = el('img'); im.src = src; w.appendChild(im);
+    const t = el('div','txt'); t.textContent = 'Trocar a foto'; w.appendChild(t);
+  } else {
+    const t = el('div','txt');
+    t.innerHTML = 'Toque para escolher a foto da página<br>— ou tire uma agora';
+    w.appendChild(t);
+  }
+}
+function pintaTemasForm(){
+  const w = $('#fTemasNovo'); w.innerHTML = '';
+  form.temas.forEach(t=>{
+    const b = el('button','tema-tag manual'); b.type='button'; b.textContent = t+' ×';
+    b.onclick = ()=>{ form.temas = form.temas.filter(x=>x!==t); pintaTemasForm(); };
+    w.appendChild(b);
+  });
+  const sel = el('select','entrada');
+  sel.innerHTML = '<option value="">+ tema…</option>' +
+    [...CT.keys()].sort((a,b)=>a.localeCompare(b,'pt')).filter(t=>!form.temas.includes(t))
+      .map(t=>'<option>'+esc(t)+'</option>').join('') +
+    '<option value="__novo">+ criar outro tema…</option>';
+  sel.onchange = ()=>{
+    let v = sel.value;
+    if(v === '__novo') v = (prompt('Nome do novo tema:')||'').trim();
+    if(v && !form.temas.includes(v)){ form.temas.push(v); if(!CT.has(v)) CT.set(v,0); }
+    pintaTemasForm();
+  };
+  w.appendChild(sel);
+}
+
+/* encolhe a foto antes de guardar: 1200px de largura, jpeg */
+function encolhe(file){
+  return new Promise((res, rej)=>{
+    const fr = new FileReader();
+    fr.onerror = ()=> rej(new Error('Não consegui ler a foto.'));
+    fr.onload = ()=>{
+      const im = new Image();
+      im.onerror = ()=> rej(new Error('Esse arquivo não parece uma imagem.'));
+      im.onload = ()=>{
+        const larg = Math.min(1200, im.width);
+        const c = el('canvas');
+        c.width = larg; c.height = Math.round(im.height * larg / im.width);
+        c.getContext('2d').drawImage(im, 0, 0, c.width, c.height);
+        res(c.toDataURL('image/jpeg', 0.82));
+      };
+      im.src = fr.result;
+    };
+    fr.readAsDataURL(file);
+  });
+}
+
+$('#btnNovo').onclick = ()=> abreForm(null);
+$('#cancelaNovo').onclick = fechaForm;
+$('#modalNovo').onclick = e=>{ if(e.target.id === 'modalNovo') fechaForm(); };
+$('#solta').onclick = ()=> $('#inFoto').click();
+$('#solta').ondragover = e=>{ e.preventDefault(); $('#solta').classList.add('sobre'); };
+$('#solta').ondragleave = ()=> $('#solta').classList.remove('sobre');
+$('#solta').ondrop = e=>{
+  e.preventDefault(); $('#solta').classList.remove('sobre');
+  const f = e.dataTransfer.files[0]; if(f) pegaFoto(f);
+};
+$('#inFoto').onchange = e=>{ const f = e.target.files[0]; if(f) pegaFoto(f); };
+async function pegaFoto(f){
+  $('#statusForm').textContent = 'preparando a foto…';
+  try{
+    form.foto = await encolhe(f);
+    mostraFoto(form.foto);
+    $('#statusForm').textContent = '';
+  }catch(err){ $('#statusForm').textContent = err.message; }
+}
+
+/* barra de negrito/itálico/sublinhado do formulário */
+(function(){
+  const ferr = $('#ferrNovo');
+  [['b','B','bold'],['i','I','italic'],['u','U','underline']].forEach(([cls,rot,cmd])=>{
+    const b = el('button','fmt '+cls); b.type='button'; b.textContent = rot;
+    b.onmousedown = e=> e.preventDefault();
+    b.onclick = ()=>{ $('#fTexto').focus(); document.execCommand(cmd, false, null); };
+    ferr.appendChild(b);
+  });
+  const lp = el('button','fmt limpa'); lp.type='button'; lp.textContent='tirar formatação';
+  lp.onmousedown = e=> e.preventDefault();
+  lp.onclick = ()=>{ $('#fTexto').focus(); document.execCommand('removeFormat', false, null); };
+  ferr.appendChild(lp);
+  $('#fTexto').addEventListener('paste', e=>{
+    e.preventDefault();
+    const t = (e.clipboardData || window.clipboardData).getData('text/plain');
+    document.execCommand('insertText', false, t);
+  });
+})();
+
+/* transcrição automática, carregada só quando pedida */
+$('#ocrNovo').onclick = async ()=>{
+  if(!form.foto){ $('#statusForm').textContent = 'Escolha a foto primeiro.'; return; }
+  const btn = $('#ocrNovo'); btn.disabled = true;
+  $('#statusForm').textContent = 'baixando o leitor (uns 15 MB, só na primeira vez)…';
+  try{
+    const mod = await import('https://cdn.jsdelivr.net/npm/tesseract.js@5.1.1/+esm');
+    const worker = await mod.createWorker('por', 1, {
+      logger: m => { if(m.status === 'recognizing text')
+        $('#statusForm').textContent = 'lendo a foto… ' + Math.round(m.progress*100) + '%'; }
+    });
+    const { data } = await worker.recognize(form.foto);
+    await worker.terminate();
+    const limpo = (data.text||'').replace(/(\w)-\n(\w)/g,'$1$2')
+                    .split(/\n\s*\n/).map(p=> p.split('\n').map(l=>l.trim()).filter(Boolean).join(' '))
+                    .filter(Boolean).join('\n\n');
+    if(limpo.trim()){
+      $('#fTexto').textContent = limpo;
+      $('#statusForm').textContent = 'pronto — confira e corrija o que saiu torto';
+    } else $('#statusForm').textContent = 'não saiu texto dessa foto; escreva à mão';
+  }catch(err){
+    $('#statusForm').textContent = 'não consegui carregar o leitor. Escreva à mão.';
+  }finally{ btn.disabled = false; }
+};
+
+$('#salvaNovo').onclick = async ()=>{
+  const autor = $('#fAutor').value.trim();
+  const tmp = el('div'); tmp.innerHTML = $('#fTexto').innerHTML;
+  const texto = limpaHtml(tmp);
+  const plano = (()=>{ const d=el('div'); d.innerHTML = texto.replace(/<br\s*\/?>/gi,'\n'); return d.textContent.trim(); })();
+  if(!autor && !plano){ $('#statusForm').textContent = 'Falta pelo menos o autor ou o texto.'; return; }
+  if(!form.foto && !form.editando){ $('#statusForm').textContent = 'Falta a foto.'; return; }
+
+  const data = $('#fData').value || new Date().toISOString().slice(0,10);
+  if(form.editando){
+    const n = novosLoc.find(x=>x.id===form.editando.id) || novosPub.find(x=>x.id===form.editando.id);
+    Object.assign(n, {autor: autor||'Sem autor', obra: $('#fObra').value.trim(),
+                      data, ts: Math.floor(new Date(data+'T12:00:00').getTime()/1000),
+                      texto, temas: form.temas.slice()});
+    if(form.foto && form.foto !== n.foto && form.foto.startsWith('data:')) n.foto = form.foto;
+    if(!novosLoc.some(x=>x.id===n.id)) novosLoc.push(n);
+  } else {
+    const id = Date.now();
+    novosLoc.push({id, autor: autor||'Sem autor', obra: $('#fObra').value.trim(),
+                   data, ts: Math.floor(new Date(data+'T12:00:00').getTime()/1000),
+                   texto, temas: form.temas.slice(), foto: form.foto,
+                   img: 'posts/meus/'+id+'.jpg', file: id+'.jpg'});
+  }
+  gravaNovos(); remontaDados(); recalcFacetas(); atualiza(); fechaForm();
+
+  if(REPO && token){ await publica(); }
+  else aviso('Guardado neste aparelho. Publique quando tiver um token.');
+};
+
 /* ---------- publicar direto no GitHub ---------- */
 const REPO = (function(){
   if(!location.hostname.endsWith('github.io')) return null;
@@ -1125,45 +1399,69 @@ function b64(str){
   bytes.forEach(b=> bin += String.fromCharCode(b));
   return btoa(bin);
 }
+const cabAPI = ()=>({'Authorization':'Bearer '+token, 'Accept':'application/vnd.github+json'});
+const urlAPI = caminho => 'https://api.github.com/repos/'+REPO.dono+'/'+REPO.nome+'/contents/'+caminho;
+
+async function shaDe(caminho){
+  const r = await fetch(urlAPI(caminho)+'?ref='+REPO.ramo+'&t='+Date.now(),
+                        {headers:cabAPI(), cache:'no-store'});
+  if(r.status === 200) return (await r.json()).sha;
+  if(r.status === 401) throw new Error('Token recusado. Gere outro e guarde de novo.');
+  if(r.status === 403) throw new Error('O token não tem permissão de escrita neste repositório.');
+  return null;   // 404 = arquivo ainda não existe
+}
+async function mandaArquivo(caminho, conteudoB64, recado){
+  const sha = await shaDe(caminho);
+  const r = await fetch(urlAPI(caminho), {
+    method:'PUT', headers:Object.assign({'Content-Type':'application/json'}, cabAPI()),
+    body: JSON.stringify({message:recado, content:conteudoB64, branch:REPO.ramo, sha: sha || undefined})
+  });
+  if(!r.ok){
+    const e = await r.json().catch(()=>({}));
+    throw new Error(r.status===409 ? 'Alguém publicou antes. Recarregue a página e tente de novo.'
+                  : r.status===403 ? 'O token não tem permissão de escrita neste repositório.'
+                  : (e.message || 'Erro '+r.status+' em '+caminho));
+  }
+}
+
 async function publica(){
   if(!REPO || !token) return;
-  const url = 'https://api.github.com/repos/'+REPO.dono+'/'+REPO.nome+'/contents/revisoes.json';
-  const cab = {'Authorization':'Bearer '+token, 'Accept':'application/vnd.github+json'};
   const btn = $('#pubRev');
   btn.textContent = 'publicando…'; btn.disabled = true;
+  const carimbo = new Date().toLocaleString('pt-BR');
   try{
-    let sha = null;
-    const atual = await fetch(url+'?ref='+REPO.ramo+'&t='+Date.now(), {headers:cab, cache:'no-store'});
-    if(atual.status === 200) sha = (await atual.json()).sha;
-    else if(atual.status === 401) throw new Error('Token recusado. Gere outro e guarde de novo.');
-    else if(atual.status === 404 && !sha) sha = null;
-
-    const conteudo = JSON.stringify(mescla(), null, 1);
-    const r = await fetch(url, {
-      method:'PUT', headers:Object.assign({'Content-Type':'application/json'}, cab),
-      body: JSON.stringify({
-        message:'revisões — '+new Date().toLocaleString('pt-BR'),
-        content: b64(conteudo), branch: REPO.ramo, sha: sha || undefined
-      })
-    });
-    if(!r.ok){
-      const e = await r.json().catch(()=>({}));
-      throw new Error(r.status===409 ? 'Alguém publicou antes. Recarregue a página e publique de novo.'
-                    : r.status===403 ? 'O token não tem permissão de escrita neste repositório.'
-                    : (e.message || 'Erro '+r.status));
+    // 1. as fotos dos trechos novos que ainda não subiram
+    const comFoto = novosLoc.filter(n=> n.foto && n.foto.startsWith('data:'));
+    for(let i=0; i<comFoto.length; i++){
+      const n = comFoto[i];
+      btn.textContent = 'enviando foto '+(i+1)+' de '+comFoto.length+'…';
+      await mandaArquivo(n.img, n.foto.split(',')[1], 'foto — '+carimbo);
+      delete n.foto;
     }
+    // 2. a lista dos trechos novos
+    if(novosLoc.length){
+      btn.textContent = 'publicando…';
+      const juntos = novosPub.filter(p=> !novosLoc.some(n=> n.id === p.id)).concat(novosLoc);
+      juntos.sort((a,b)=> a.id - b.id);
+      await mandaArquivo('novos.json', b64(JSON.stringify(juntos, null, 1)), 'trechos novos — '+carimbo);
+      novosPub = juntos; novosLoc = []; gravaNovos();
+    }
+    // 3. as revisões
+    const conteudo = JSON.stringify(mescla(), null, 1);
+    await mandaArquivo('revisoes.json', b64(conteudo), 'revisões — '+carimbo);
     base = JSON.parse(conteudo);
-    meu = VAZIO(); grava(); recalcFacetas(); atualiza();
+    meu = VAZIO(); grava();
+    remontaDados(); recalcFacetas(); atualiza();
     aviso('Publicado. Em ~1 minuto aparece nos outros aparelhos.');
-    contaPendentes();
   }catch(err){
+    gravaNovos();
     aviso(err.message);
   }finally{
     btn.disabled = false; contaPendentes();
   }
 }
 function contaPendentes(){
-  const n = new Set(Object.values(meu).flatMap(o=>Object.keys(o))).size;
+  const n = new Set(Object.values(meu).flatMap(o=>Object.keys(o))).size + novosLoc.length;
   const btn = $('#pubRev');
   if(REPO && token){
     btn.style.display = '';
@@ -1225,11 +1523,19 @@ addEventListener('hashchange', ()=>{ leHash(); atualiza(); rolaTopo(); });
 
 /* ---------- partida ---------- */
 $('#total').textContent = DADOS.length;
+remontaDados();
 leHash();
 recalcFacetas(); atualiza();
 $('#voltaBase').style.display = temLocal()? '' : 'none';
 
 if(location.protocol.startsWith('http')){
+  fetch('novos.json?t='+Date.now(), {cache:'no-store'}).then(r=> r.ok? r.json() : null).then(d=>{
+    if(!Array.isArray(d)) return;
+    novosPub = d;
+    novosLoc = novosLoc.filter(n=> !novosPub.some(p=> p.id === n.id && !n.foto));
+    gravaNovos(); remontaDados(); recalcFacetas(); atualiza();
+  }).catch(()=>{});
+
   fetch('revisoes.json?t='+Date.now(), {cache:'no-store'}).then(r=> r.ok? r.json() : null).then(d=>{
     if(!d) return;
     base = Object.assign(VAZIO(), {fav:d.fav||{}, htm:d.htm||{}, temas:d.temas||{},

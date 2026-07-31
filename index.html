@@ -171,6 +171,35 @@ mark{background:linear-gradient(105deg,rgba(245,220,85,0) 0%,var(--grifo) 4%,var
   body::before{display:none}
   .ficha{display:block;border:none;border-bottom:1px solid #ccc;box-shadow:none;page-break-inside:avoid}
 }
+/* ---------- compartilhar ---------- */
+.menu-share{position:relative;display:inline-flex}
+.popover{
+  position:absolute;top:calc(100% + 8px);left:0;z-index:30;min-width:212px;
+  background:var(--papel-alto);border:1px solid var(--linha);border-radius:var(--r);
+  box-shadow:0 8px 26px rgba(20,28,39,.18);padding:5px;display:none;
+}
+.popover.aberto{display:block}
+.popover.acima{top:auto;bottom:calc(100% + 8px)}
+.popover .cab{
+  font-family:'IBM Plex Mono',monospace;font-size:9.5px;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--tinta-tenue);padding:7px 9px 4px;
+}
+.popover .div{height:1px;background:var(--linha);margin:4px 2px}
+.popover button{
+  display:flex;align-items:center;gap:9px;width:100%;text-align:left;
+  font-family:'Archivo',sans-serif;font-size:13px;color:var(--tinta);
+  padding:7px 9px;border-radius:2px;
+}
+.popover button:hover{background:rgba(34,64,154,.08)}
+.popover button:disabled{color:var(--tinta-tenue);cursor:default}
+.popover button:disabled:hover{background:none}
+.popover .ic{width:17px;text-align:center;flex:none;font-size:13px}
+.popover .nota{
+  font-family:'Archivo',sans-serif;font-size:11px;color:var(--tinta-tenue);
+  padding:4px 9px 8px;line-height:1.45;
+}
+.ficha.apontada{border-color:var(--caneta);box-shadow:0 0 0 3px rgba(34,64,154,.16)}
+
 </style>
 </head>
 <body>
@@ -225,12 +254,18 @@ mark{background:linear-gradient(105deg,rgba(245,220,85,0) 0%,var(--grifo) 4%,var
       <div class="acoes-rail">
         <button class="link" id="expMd">baixar seleção em markdown</button>
         <button class="link" id="expJson">baixar seleção em json</button>
+        <button class="link" id="pubRev" style="display:none">publicar no GitHub</button>
+        <button class="link" id="copRev">copiar revisoes.json</button>
         <button class="link" id="expRev">baixar revisoes.json</button>
         <button class="link" id="impRev">carregar revisoes.json</button>
         <button class="link" id="voltaBase" style="display:none">descartar mudanças locais</button>
         <button class="link" id="limpaTudo" style="color:var(--alerta)">apagar tudo que salvei</button>
       </div>
       <div class="nota-rail" id="notaSync"></div>
+      <div id="blocoToken" style="display:none;margin-top:10px">
+        <input class="mini-busca" id="inToken" type="password" placeholder="token do GitHub" autocomplete="off">
+        <button class="link" id="salvaToken">guardar token neste aparelho</button>
+      </div>
     </div>
   </aside>
 
@@ -299,6 +334,7 @@ function grava(){
   try { localStorage.setItem(CHAVE, JSON.stringify(meu)); }
   catch(e){ if(podeSalvar){ podeSalvar=false; aviso('Não consegui salvar neste navegador. Baixe o revisoes.json para não perder o trabalho.'); } }
   $('#voltaBase').style.display = temLocal()? '' : 'none';
+  if(typeof contaPendentes === 'function') contaPendentes();
 }
 function temLocal(){ return Object.keys(meu).some(k=>Object.keys(meu[k]).length); }
 const tem = (o,k)=> Object.prototype.hasOwnProperty.call(o,k);
@@ -372,11 +408,15 @@ function buscaDe(r){
 /* ---------- estado da tela ---------- */
 const est = {q:'', temas:new Set(), autores:new Set(), obras:new Set(), anos:new Set(),
              fav:false, rep:false, edit:false, prob:false, semTema:false, lixo:false,
-             ord:'rec', mostrar:50};
+             ord:'rec', mostrar:50, so:null};
 let abertos = new Set(), editando = null, blobs = null;
 
 function filtrar(){
   const termos = est.q.trim() ? semAcento(est.q.trim()).split(/\s+/).filter(Boolean) : [];
+  if(est.so !== null){
+    const um = DADOS.find(r=> r.id === est.so);
+    return um ? [um] : [];
+  }
   const out = DADOS.filter(r=>{
     if(est.lixo !== excluido(r)) return false;
     if(est.temas.size){ const t=temasDe(r); if(!t.some(x=>est.temas.has(x))) return false; }
@@ -564,6 +604,7 @@ function ficha(r){
         aviso('Trecho excluído.', 'desfazer', ()=>{ apaga('del', r.id); recalcFacetas(); atualiza(); });
       };
       rod.appendChild(rm);
+      rod.appendChild(menuShare(r));
 
       const tl = el('div','temas-linha');
       temasDe(r).forEach(t=>{
@@ -752,6 +793,7 @@ function pintaAtivos(){
     s.onclick = ()=>{ fn(); atualiza(); };
     w.appendChild(s);
   };
+  if(est.so !== null) add('link','trecho compartilhado',()=>{ est.so=null; if(location.hash) history.replaceState(null,'',location.pathname+location.search); });
   est.temas.forEach(t=> add('tema',t,()=>est.temas.delete(t)));
   est.autores.forEach(a=> add('autor',a,()=>est.autores.delete(a)));
   est.obras.forEach(o=> add('obra',o,()=>est.obras.delete(o)));
@@ -764,7 +806,7 @@ function pintaAtivos(){
     const b = el('button','link'); b.textContent='limpar tudo';
     b.onclick = ()=>{
       est.temas.clear(); est.autores.clear(); est.obras.clear(); est.anos.clear();
-      est.fav=est.rep=est.edit=est.prob=est.semTema=est.lixo=false; soGrupo=null;
+      est.fav=est.rep=est.edit=est.prob=est.semTema=est.lixo=false; soGrupo=null; est.so=null;
       ['soFav','soRep','soEdit','soProb','soSemTema','soLixo'].forEach(i=>$('#'+i).checked=false);
       atualiza();
     };
@@ -873,6 +915,278 @@ $('#limpaTudo').onclick = ()=>{
   meu = VAZIO(); base = VAZIO(); grava(); recalcFacetas(); atualiza(); aviso('Tudo apagado.');
 };
 
+/* ---------- compartilhar ---------- */
+function linkDe(r){ return location.origin + location.pathname + '#t' + r.id; }
+function assinatura(r){
+  const o = obraDe(r);
+  return '— ' + autorDe(r) + (o ? ', ' + o : '');
+}
+function corta(txt, lim){
+  txt = txt.replace(/\s+/g,' ').trim();
+  if(txt.length <= lim) return txt;
+  const p = txt.lastIndexOf(' ', lim - 1);
+  return txt.slice(0, p > lim*0.6 ? p : lim - 1).trim() + '…';
+}
+function textoShare(r, lim){
+  const t = corta(planoDe(r), lim);
+  return t ? '"' + t + '"\n' + assinatura(r) : assinatura(r);
+}
+
+/* desenha o trecho como imagem, para o Instagram */
+const CORES = {fundo:'#FBFCFE', pauta:'rgba(34,64,154,.07)', tinta:'#141C27',
+               fraca:'#5D6879', grifo:'#F5DC55'};
+async function cartao(r, larg, alt){
+  try { await document.fonts.ready; } catch(e){}
+  const c = el('canvas'); c.width = larg; c.height = alt;
+  const g = c.getContext('2d');
+  g.fillStyle = CORES.fundo; g.fillRect(0,0,larg,alt);
+
+  const marg = Math.round(larg * 0.105);
+  const util = larg - marg*2;
+
+  // corpo do texto, com o tamanho ajustado ao tamanho do trecho
+  let txt = planoDe(r).replace(/\s+/g,' ').trim() || r.legenda || '';
+  // no 9:16 o Instagram cobre o topo e o pé com a interface dele — sobra menos área útil
+  const alto = alt / larg > 1.5;
+  const rodapeAlt = Math.round(alt * (alto ? 0.20 : 0.15));
+  const topo = Math.round(alt * (alto ? 0.20 : 0.15));
+  const disp = alt - topo - rodapeAlt;
+  let corpo = Math.round(larg * 0.052), linhas = [], entre;
+
+  for(let tent=0; tent<40; tent++){
+    g.font = corpo + 'px Literata, Georgia, serif';
+    entre = Math.round(corpo * 1.52);
+    linhas = [];
+    let linha = '';
+    for(const pal of txt.split(' ')){
+      const t = linha ? linha + ' ' + pal : pal;
+      if(g.measureText(t).width > util && linha){ linhas.push(linha); linha = pal; }
+      else linha = t;
+    }
+    if(linha) linhas.push(linha);
+    if(linhas.length * entre <= disp || corpo <= larg*0.026) break;
+    corpo -= Math.max(1, Math.round(larg*0.0025));
+  }
+  const cabem = Math.floor(disp / entre);
+  if(linhas.length > cabem){
+    linhas = linhas.slice(0, cabem);
+    linhas[linhas.length-1] = corta(linhas[linhas.length-1], Math.max(8, linhas[linhas.length-1].length - 2));
+  }
+
+  // pauta de fundo, alinhada às linhas do texto
+  g.fillStyle = CORES.pauta;
+  for(let y = topo + entre; y < alt - rodapeAlt; y += entre) g.fillRect(marg*0.55, y, larg - marg*1.1, 1);
+
+  // aspas grandes, em grifo
+  g.fillStyle = CORES.grifo;
+  g.font = Math.round(larg*0.17) + 'px Literata, Georgia, serif';
+  g.fillText('\u201C', marg - larg*0.012, topo - larg*0.012);
+
+  g.fillStyle = CORES.tinta;
+  g.font = corpo + 'px Literata, Georgia, serif';
+  g.textBaseline = 'alphabetic';
+  let y = topo + entre*0.82;
+  linhas.forEach(l=>{ g.fillText(l, marg, y); y += entre; });
+
+  // rodapé: autor, obra e a marca
+  const base = alt - Math.round(rodapeAlt * (alto ? 0.80 : 0.55));
+  g.fillStyle = CORES.grifo;
+  g.fillRect(marg, base - Math.round(larg*0.052), Math.round(larg*0.09), Math.round(larg*0.009));
+  g.fillStyle = CORES.tinta;
+  g.font = '600 ' + Math.round(larg*0.036) + 'px Archivo, system-ui, sans-serif';
+  g.fillText(corta(autorDe(r), 44), marg, base);
+  const o = obraDe(r);
+  if(o){
+    g.fillStyle = CORES.fraca;
+    g.font = 'italic ' + Math.round(larg*0.031) + 'px Literata, Georgia, serif';
+    g.fillText(corta(o, 52), marg, base + Math.round(larg*0.048));
+  }
+  g.fillStyle = CORES.fraca;
+  g.font = Math.round(larg*0.023) + 'px IBM Plex Mono, monospace';
+  g.textAlign = 'right';
+  g.fillText('trechos que li', larg - marg, base);
+  g.textAlign = 'left';
+
+  return new Promise(res=> c.toBlob(res, 'image/png'));
+}
+
+function podeArquivo(){
+  return !!(navigator.canShare && navigator.share);
+}
+async function mandaImagem(r, larg, alt, nome){
+  const blob = await cartao(r, larg, alt);
+  const arq = new File([blob], nome, {type:'image/png'});
+  if(podeArquivo() && navigator.canShare({files:[arq]})){
+    try { await navigator.share({files:[arq]}); return true; }
+    catch(e){ if(e && e.name === 'AbortError') return true; }
+  }
+  const a = el('a'); a.href = URL.createObjectURL(blob); a.download = nome;
+  document.body.appendChild(a); a.click(); a.remove();
+  setTimeout(()=>URL.revokeObjectURL(a.href), 1500);
+  aviso('Imagem baixada. Abra o Instagram e publique a partir da galeria.');
+  return false;
+}
+
+function menuShare(r){
+  const w = el('div','menu-share');
+  const b = el('button','acao'); b.innerHTML = '↗ compartilhar';
+  const pop = el('div','popover');
+  const fecha = ()=> pop.classList.remove('aberto');
+
+  const opc = (ic, rot, fn, hab)=>{
+    const o = el('button'); o.type='button';
+    o.innerHTML = '<span class="ic">'+ic+'</span><span>'+rot+'</span>';
+    if(hab === false){ o.disabled = true; }
+    else o.onclick = ()=>{ fecha(); fn(); };
+    pop.appendChild(o);
+  };
+  const titulo = t=>{ const h=el('div','cab'); h.textContent=t; pop.appendChild(h); };
+  const risco = ()=> pop.appendChild(el('div','div'));
+
+  if(podeArquivo()){
+    titulo('Direto do aparelho');
+    opc('↗', 'Compartilhar com foto', async ()=>{
+      try{
+        const resp = await fetch(caminhoImg(r));
+        const bl = await resp.blob();
+        const arq = new File([bl], 'trecho.jpg', {type: bl.type || 'image/jpeg'});
+        const carga = {text: textoShare(r, 900) + '\n\n' + linkDe(r)};
+        if(navigator.canShare({files:[arq]})) carga.files = [arq];
+        await navigator.share(carga);
+      }catch(e){
+        if(e && e.name === 'AbortError') return;
+        try { await navigator.share({text: textoShare(r,900)+'\n\n'+linkDe(r)}); } catch(_){}
+      }
+    });
+    risco();
+  }
+
+  titulo('Como texto');
+  opc('◍', 'WhatsApp', ()=>{
+    const t = textoShare(r, 900) + '\n\n' + linkDe(r);
+    window.open('https://wa.me/?text=' + encodeURIComponent(t), '_blank', 'noopener');
+  });
+  opc('✕', 'X / Twitter', ()=>{
+    const t = textoShare(r, 200);
+    window.open('https://twitter.com/intent/tweet?text=' + encodeURIComponent(t) +
+                '&url=' + encodeURIComponent(linkDe(r)), '_blank', 'noopener');
+  });
+
+  risco();
+  titulo('Instagram');
+  opc('▢', 'Feed — imagem 4:5', ()=> mandaImagem(r, 1080, 1350, 'trecho-feed.png'));
+  opc('▯', 'Stories — imagem 9:16', ()=> mandaImagem(r, 1080, 1920, 'trecho-stories.png'));
+  const n = el('div','nota');
+  n.textContent = podeArquivo()
+    ? 'O Instagram não aceita publicação direta pelo navegador. O app monta a imagem e abre o compartilhamento do aparelho.'
+    : 'No computador a imagem é baixada — publicar mesmo só pelo aplicativo do celular.';
+  pop.appendChild(n);
+
+  risco();
+  opc('⧉', 'Copiar texto e link', ()=>{
+    navigator.clipboard.writeText(textoShare(r, 4000) + '\n\n' + linkDe(r))
+      .then(()=>aviso('Copiado.'), ()=>aviso('Não consegui copiar.'));
+  });
+  opc('🔗', 'Copiar só o link', ()=>{
+    navigator.clipboard.writeText(linkDe(r))
+      .then(()=>aviso('Link copiado.'), ()=>aviso('Não consegui copiar.'));
+  });
+
+  b.onclick = e=>{
+    e.stopPropagation();
+    const jaAberto = pop.classList.contains('aberto');
+    document.querySelectorAll('.popover.aberto').forEach(x=>x.classList.remove('aberto'));
+    if(!jaAberto){
+      // abre para baixo, a não ser que não caiba
+      pop.classList.toggle('acima', b.getBoundingClientRect().bottom > innerHeight - 340);
+      pop.classList.add('aberto');
+    }
+  };
+  w.appendChild(b); w.appendChild(pop);
+  return w;
+}
+document.addEventListener('click', ()=>{
+  document.querySelectorAll('.popover.aberto').forEach(x=>x.classList.remove('aberto'));
+});
+
+/* ---------- publicar direto no GitHub ---------- */
+const REPO = (function(){
+  if(!location.hostname.endsWith('github.io')) return null;
+  const dono = location.hostname.split('.')[0];
+  const seg = location.pathname.split('/').filter(Boolean);
+  return {dono, nome: seg.length ? seg[0] : location.hostname, ramo: 'main'};
+})();
+let token = '';
+try { token = localStorage.getItem('tql_token') || ''; } catch(e){}
+
+function b64(str){
+  const bytes = new TextEncoder().encode(str);
+  let bin = '';
+  bytes.forEach(b=> bin += String.fromCharCode(b));
+  return btoa(bin);
+}
+async function publica(){
+  if(!REPO || !token) return;
+  const url = 'https://api.github.com/repos/'+REPO.dono+'/'+REPO.nome+'/contents/revisoes.json';
+  const cab = {'Authorization':'Bearer '+token, 'Accept':'application/vnd.github+json'};
+  const btn = $('#pubRev');
+  btn.textContent = 'publicando…'; btn.disabled = true;
+  try{
+    let sha = null;
+    const atual = await fetch(url+'?ref='+REPO.ramo+'&t='+Date.now(), {headers:cab, cache:'no-store'});
+    if(atual.status === 200) sha = (await atual.json()).sha;
+    else if(atual.status === 401) throw new Error('Token recusado. Gere outro e guarde de novo.');
+    else if(atual.status === 404 && !sha) sha = null;
+
+    const conteudo = JSON.stringify(mescla(), null, 1);
+    const r = await fetch(url, {
+      method:'PUT', headers:Object.assign({'Content-Type':'application/json'}, cab),
+      body: JSON.stringify({
+        message:'revisões — '+new Date().toLocaleString('pt-BR'),
+        content: b64(conteudo), branch: REPO.ramo, sha: sha || undefined
+      })
+    });
+    if(!r.ok){
+      const e = await r.json().catch(()=>({}));
+      throw new Error(r.status===409 ? 'Alguém publicou antes. Recarregue a página e publique de novo.'
+                    : r.status===403 ? 'O token não tem permissão de escrita neste repositório.'
+                    : (e.message || 'Erro '+r.status));
+    }
+    base = JSON.parse(conteudo);
+    meu = VAZIO(); grava(); recalcFacetas(); atualiza();
+    aviso('Publicado. Em ~1 minuto aparece nos outros aparelhos.');
+    contaPendentes();
+  }catch(err){
+    aviso(err.message);
+  }finally{
+    btn.disabled = false; contaPendentes();
+  }
+}
+function contaPendentes(){
+  const n = new Set(Object.values(meu).flatMap(o=>Object.keys(o))).size;
+  const btn = $('#pubRev');
+  if(REPO && token){
+    btn.style.display = '';
+    btn.textContent = n ? ('publicar no GitHub ('+n+' trecho'+(n>1?'s':'')+')') : 'publicar no GitHub';
+    btn.style.fontWeight = n ? '700' : '400';
+  } else btn.style.display = 'none';
+  return n;
+}
+$('#pubRev').onclick = publica;
+$('#salvaToken').onclick = ()=>{
+  token = $('#inToken').value.trim();
+  try { token ? localStorage.setItem('tql_token', token) : localStorage.removeItem('tql_token'); } catch(e){}
+  $('#inToken').value = token ? '••••••••' : '';
+  contaPendentes();
+  aviso(token ? 'Token guardado neste aparelho.' : 'Token removido.');
+};
+$('#copRev').onclick = ()=>{
+  const txt = JSON.stringify(mescla(), null, 1);
+  navigator.clipboard.writeText(txt).then(
+    ()=> aviso('Copiado. Cole no revisoes.json do repositório.'),
+    ()=> aviso('Não consegui copiar. Use "baixar revisoes.json".'));
+};
+
 /* ---------- eventos ---------- */
 let tmr;
 $('#busca').oninput = e=>{
@@ -899,13 +1213,24 @@ function fechaRail(){ $('#rail').classList.remove('aberto'); $('#veu').classList
 $('#btnFiltros').onclick = ()=>{ $('#rail').classList.toggle('aberto'); $('#veu').classList.toggle('ver'); };
 $('#veu').onclick = fechaRail;
 
+/* ---------- link para um trecho ---------- */
+function leHash(){
+  const m = /^#t(\d+)$/.exec(location.hash || '');
+  const novo = m ? Number(m[1]) : null;
+  if(novo === est.so) return;
+  est.so = (novo !== null && DADOS.some(r=>r.id===novo)) ? novo : null;
+  est.mostrar = 50;
+}
+addEventListener('hashchange', ()=>{ leHash(); atualiza(); rolaTopo(); });
+
 /* ---------- partida ---------- */
 $('#total').textContent = DADOS.length;
+leHash();
 recalcFacetas(); atualiza();
 $('#voltaBase').style.display = temLocal()? '' : 'none';
 
 if(location.protocol.startsWith('http')){
-  fetch('revisoes.json', {cache:'no-store'}).then(r=> r.ok? r.json() : null).then(d=>{
+  fetch('revisoes.json?t='+Date.now(), {cache:'no-store'}).then(r=> r.ok? r.json() : null).then(d=>{
     if(!d) return;
     base = Object.assign(VAZIO(), {fav:d.fav||{}, htm:d.htm||{}, temas:d.temas||{},
                                    autor:d.autor||{}, obra:d.obra||{}, del:d.del||{}});
@@ -914,7 +1239,14 @@ if(location.protocol.startsWith('http')){
     $('#notaSync').textContent = n+' trechos com revisões publicadas no repositório.';
     recalcFacetas(); atualiza();
   }).catch(()=>{});
-  $('#notaSync').textContent = 'As mudanças ficam neste navegador. Para levar para outra máquina: baixe o revisoes.json e suba no repositório.';
+  if(REPO){
+    $('#blocoToken').style.display = '';
+    $('#inToken').value = token ? '••••••••' : '';
+    $('#notaSync').textContent = 'Com um token guardado, "publicar no GitHub" manda tudo de uma vez — funciona no celular também.';
+  } else {
+    $('#notaSync').textContent = 'As mudanças ficam neste navegador. Para levar para outra máquina: baixe o revisoes.json e suba no repositório.';
+  }
+  contaPendentes();
 } else {
   $('#notaSync').textContent = 'As mudanças ficam neste navegador. Baixe o revisoes.json de vez em quando.';
 }

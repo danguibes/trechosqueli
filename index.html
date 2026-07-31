@@ -140,6 +140,12 @@ mark{background:linear-gradient(105deg,rgba(245,220,85,0) 0%,var(--grifo) 4%,var
 .aviso b{font-weight:600}
 .aviso .btns{margin-top:9px;display:flex;gap:9px;flex-wrap:wrap}
 .esconder{display:none !important}
+body.visitante .so-dono{display:none !important}
+.entrar{
+  font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--tinta-tenue);margin-top:18px;display:block;text-align:left;
+}
+.entrar:hover{color:var(--caneta)}
 .toast{position:fixed;bottom:22px;left:50%;transform:translateX(-50%) translateY(80px);background:var(--tinta);color:var(--papel-alto);padding:10px 18px;border-radius:100px;font-family:'Archivo',sans-serif;font-size:13px;z-index:95;opacity:0;transition:transform .22s ease,opacity .22s ease;display:flex;gap:14px;align-items:center}
 .toast.ver{transform:translateX(-50%) translateY(0);opacity:1}
 .toast button{color:var(--grifo);font-family:'Archivo',sans-serif;font-size:13px;font-weight:600;text-decoration:underline}
@@ -256,7 +262,7 @@ mark{background:linear-gradient(105deg,rgba(245,220,85,0) 0%,var(--grifo) 4%,var
       <input class="busca" id="busca" type="search" placeholder="Buscar no texto, no autor, na obra…" autocomplete="off" spellcheck="false">
       <button class="limpar-busca" id="limparBusca" title="Limpar busca" aria-label="Limpar busca">&times;</button>
     </div>
-    <button class="btn-novo" id="btnNovo">+ novo trecho</button>
+    <button class="btn-novo so-dono" id="btnNovo">+ novo trecho</button>
     <div class="contagem rotulo"><b id="cont">0</b> de <span id="total">0</span> trechos</div>
   </div>
 </header>
@@ -288,25 +294,26 @@ mark{background:linear-gradient(105deg,rgba(245,220,85,0) 0%,var(--grifo) 4%,var
     <div class="grupo">
       <div class="grupo-topo"><span class="rotulo">Só mostrar</span></div>
       <label class="alt"><input type="checkbox" id="soFav"> marcados <span class="n" id="nFav"></span></label>
-      <label class="alt"><input type="checkbox" id="soRep"> repetidos <span class="n" id="nRep"></span></label>
-      <label class="alt"><input type="checkbox" id="soEdit"> revisados por mim</label>
-      <label class="alt"><input type="checkbox" id="soProb"> com transcrição falha</label>
-      <label class="alt"><input type="checkbox" id="soSemTema"> sem tema</label>
-      <label class="alt"><input type="checkbox" id="soLixo"> excluídos <span class="n" id="nLixo"></span></label>
+      <label class="alt so-dono"><input type="checkbox" id="soRep"> repetidos <span class="n" id="nRep"></span></label>
+      <label class="alt so-dono"><input type="checkbox" id="soEdit"> revisados por mim</label>
+      <label class="alt so-dono"><input type="checkbox" id="soProb"> com transcrição falha</label>
+      <label class="alt so-dono"><input type="checkbox" id="soSemTema"> sem tema</label>
+      <label class="alt so-dono"><input type="checkbox" id="soLixo"> excluídos <span class="n" id="nLixo"></span></label>
     </div>
     <div class="grupo">
       <div class="grupo-topo"><span class="rotulo">Guardar</span></div>
       <div class="acoes-rail">
         <button class="link" id="expMd">baixar seleção em markdown</button>
         <button class="link" id="expJson">baixar seleção em json</button>
-        <button class="link" id="pubRev" style="display:none">publicar no GitHub</button>
-        <button class="link" id="copRev">copiar revisoes.json</button>
-        <button class="link" id="expRev">baixar revisoes.json</button>
-        <button class="link" id="impRev">carregar revisoes.json</button>
-        <button class="link" id="voltaBase" style="display:none">descartar mudanças locais</button>
-        <button class="link" id="limpaTudo" style="color:var(--alerta)">apagar tudo que salvei</button>
+        <button class="link so-dono" id="pubRev" style="display:none">publicar no GitHub</button>
+        <button class="link so-dono" id="copRev">copiar revisoes.json</button>
+        <button class="link so-dono" id="expRev">baixar revisoes.json</button>
+        <button class="link so-dono" id="impRev">carregar revisoes.json</button>
+        <button class="link so-dono" id="voltaBase" style="display:none">descartar mudanças locais</button>
+        <button class="link so-dono" id="limpaTudo" style="color:var(--alerta)">apagar tudo que salvei</button>
       </div>
-      <div class="nota-rail" id="notaSync"></div>
+      <div class="nota-rail so-dono" id="notaSync"></div>
+      <button class="entrar" id="btnEntrar">modo edição</button>
       <div id="blocoToken" style="display:none;margin-top:10px">
         <input class="mini-busca" id="inToken" type="password" placeholder="token do GitHub" autocomplete="off">
         <button class="link" id="salvaToken">guardar token neste aparelho</button>
@@ -629,8 +636,8 @@ function ficha(r){
     meta.appendChild(o);
   }
   if(excluido(r)){ const s = el('span','selo'); s.textContent='excluído'; meta.appendChild(s); }
-  if(r.novo && !r.pendente){ const s = el('span','selo-novo'); s.textContent='meu'; meta.appendChild(s); }
-  if(r.pendente){ const s = el('span','selo-espera'); s.textContent='não publicado'; meta.appendChild(s); }
+  if(dono && r.novo && !r.pendente){ const s = el('span','selo-novo'); s.textContent='meu'; meta.appendChild(s); }
+  if(dono && r.pendente){ const s = el('span','selo-espera'); s.textContent='não publicado'; meta.appendChild(s); }
   const d = el('span','data'); d.textContent = r.data || 'sem data'; meta.appendChild(d);
   esq.appendChild(meta);
 
@@ -657,7 +664,7 @@ function ficha(r){
   if(editando !== r.id){
     const rod = el('div','rodape');
     if(excluido(r)){
-      const v = el('button','acao on'); v.innerHTML = '↩ restaurar';
+      const v = el('button','acao on so-dono'); v.innerHTML = '↩ restaurar';
       v.onclick = ()=>{ apaga('del', r.id); recalcFacetas(); atualiza(); aviso('Trecho restaurado.'); };
       rod.appendChild(v);
     } else {
@@ -666,7 +673,7 @@ function ficha(r){
       fav.onclick = ()=>{ marcado(r) ? apaga('fav', r.id) : poe('fav', r.id, 1); atualiza(); };
       rod.appendChild(fav);
 
-      const ed = el('button','acao'+(editado(r)?' on':''));
+      const ed = el('button','acao so-dono'+(editado(r)?' on':''));
       ed.innerHTML = '✎ corrigir'+(editado(r)?' (revisado)':'');
       ed.onclick = ()=>{ if(r.novo) abreForm(r); else { editando = r.id; pintaLista(); } };
       rod.appendChild(ed);
@@ -678,7 +685,7 @@ function ficha(r){
       };
       rod.appendChild(cp);
 
-      const rm = el('button','acao perigo'); rm.innerHTML = '🗑 excluir';
+      const rm = el('button','acao perigo so-dono'); rm.innerHTML = '🗑 excluir';
       rm.onclick = ()=>{
         poe('del', r.id, 1); recalcFacetas(); atualiza();
         aviso('Trecho excluído.', 'desfazer', ()=>{ apaga('del', r.id); recalcFacetas(); atualiza(); });
@@ -697,7 +704,7 @@ function ficha(r){
     }
     esq.appendChild(rod);
 
-    if(r.rep && !excluido(r)) esq.appendChild(avisoRepetido(r));
+    if(dono && r.rep && !excluido(r)) esq.appendChild(avisoRepetido(r));
   }
   c.appendChild(esq);
 
@@ -725,14 +732,14 @@ function avisoRepetido(r){
     return w;
   }
   w.innerHTML = '<b>Repetido:</b> mais '+irmaos.length+' cópia'+(irmaos.length>1?'s':'')+' deste mesmo trecho.';
-  const ver = el('button','btn'); ver.textContent = 'Ver as cópias';
+  const ver = el('button','btn so-dono'); ver.textContent = 'Ver as cópias';
   ver.onclick = ()=>{
     est.q=''; $('#busca').value=''; $('#buscaWrap').classList.remove('tem');
     est.temas.clear(); est.autores.clear(); est.obras.clear(); est.anos.clear();
     est.mostrar = 50; soGrupo = r.rep;
     atualiza(); rolaTopo();
   };
-  const manter = el('button','btn primario');
+  const manter = el('button','btn primario so-dono');
   manter.textContent = 'Manter este, excluir '+(irmaos.length>1?('as outras '+irmaos.length):'a outra');
   manter.onclick = ()=>{
     const ids = irmaos.map(x=>x.id);
@@ -1216,6 +1223,7 @@ document.addEventListener('click', ()=>{
 const form = {foto:null, temas:[], editando:null};
 
 function abreForm(r){
+  if(!dono) return;
   form.foto = null; form.temas = []; form.editando = r || null;
   $('#tituloForm').textContent = r ? 'Editar trecho meu' : 'Novo trecho';
   $('#fAutor').value = r ? autorDe(r) : '';
@@ -1289,7 +1297,7 @@ function encolhe(file){
   });
 }
 
-$('#btnNovo').onclick = ()=> abreForm(null);
+$('#btnNovo').onclick = ()=>{ if(dono) abreForm(null); };
 $('#cancelaNovo').onclick = fechaForm;
 $('#modalNovo').onclick = e=>{ if(e.target.id === 'modalNovo') fechaForm(); };
 $('#solta').onclick = ()=> $('#inFoto').click();
@@ -1392,6 +1400,15 @@ const REPO = (function(){
 })();
 let token = '';
 try { token = localStorage.getItem('tql_token') || ''; } catch(e){}
+let dono = !!token;
+function aplicaModo(){
+  dono = !!token;
+  document.body.classList.toggle('visitante', !dono);
+  if(!dono){
+    est.rep = est.edit = est.prob = est.semTema = est.lixo = false;
+    ['soRep','soEdit','soProb','soSemTema','soLixo'].forEach(i=>{ const e=$('#'+i); if(e) e.checked=false; });
+  }
+}
 
 function b64(str){
   const bytes = new TextEncoder().encode(str);
@@ -1471,12 +1488,21 @@ function contaPendentes(){
   return n;
 }
 $('#pubRev').onclick = publica;
+$('#btnEntrar').onclick = ()=>{
+  const bl = $('#blocoToken');
+  const abrir = bl.style.display === 'none';
+  bl.style.display = abrir ? '' : 'none';
+  if(abrir){
+    $('#inToken').focus();
+    if(!REPO) aviso('O modo edição publica pelo GitHub — só funciona no endereço publicado.');
+  }
+};
 $('#salvaToken').onclick = ()=>{
   token = $('#inToken').value.trim();
   try { token ? localStorage.setItem('tql_token', token) : localStorage.removeItem('tql_token'); } catch(e){}
   $('#inToken').value = token ? '••••••••' : '';
-  contaPendentes();
-  aviso(token ? 'Token guardado neste aparelho.' : 'Token removido.');
+  aplicaModo(); recalcFacetas(); atualiza(); contaPendentes();
+  aviso(token ? 'Modo edição ligado neste aparelho.' : 'Modo edição desligado.');
 };
 $('#copRev').onclick = ()=>{
   const txt = JSON.stringify(mescla(), null, 1);
@@ -1523,6 +1549,7 @@ addEventListener('hashchange', ()=>{ leHash(); atualiza(); rolaTopo(); });
 
 /* ---------- partida ---------- */
 $('#total').textContent = DADOS.length;
+aplicaModo();
 remontaDados();
 leHash();
 recalcFacetas(); atualiza();
@@ -1546,7 +1573,7 @@ if(location.protocol.startsWith('http')){
     recalcFacetas(); atualiza();
   }).catch(()=>{});
   if(REPO){
-    $('#blocoToken').style.display = '';
+    $('#blocoToken').style.display = token ? '' : 'none';
     $('#inToken').value = token ? '••••••••' : '';
     $('#notaSync').textContent = 'Com um token guardado, "publicar no GitHub" manda tudo de uma vez — funciona no celular também.';
   } else {

@@ -5,6 +5,8 @@
  },
  "htm": {
   "78": "<div>\"Não lance sua mão sobre o mancebo e não lhe faça mal\". Ao ouvir esse terceiro comando divino, Abraão não trai nem a Deus e nem a si e ainda consegue legitimar a sua transgressão em relação à cultura como sendo a verdadeira vontade do seu Deus. <b>O segredo de Abraão está na sua capacidade de não revolta. Na sua capacidade de manter um altíssimo nível de tensão interna e esperar.</b> Esperar ouvir Deus desdizer. E ele ouve. Essa capacidade de ouvir Deus expressar uma vontade diferente ...</div>",
+  "117": "[CEMITÉRIO] DE BOLSO<div>Do lado esquerdo carrego meus mortos.</div><div>Por isso caminho um pouco de banda.</div>",
+  "190": "Estás Só\nEstás só. Ninguém o sabe. Cala e finge. Mas finge sem fingimento.\nNada 'speres que em ti já não exista, Cada um consigo é triste.\nTens sol se há sol, ramos se ramos buscas,\nSorte se a sorte é dada.<br>",
   "301": "<div>Vários sintomas assinalam essa patologia. Um deles é o que denomino <i><b>\"moral arbitrária\":</b></i> o sujeito proclama que os valores morais não têm nenhuma base cientifica nem defesa racional possível, mas continua agindo exteriormente como se acreditasse no bem e na virtude, ou naquilo que ele assim denomina.<b> Sugere, assim, que sua conduta ética, ou aparentemente ética, não deriva do Supremo Bem, mas da sua própria, misteriosa, arbitrária e inexplicável bondade pessoal</b>. É a forma de autobeatificação mais querida dos intelectuais céticos e materialistas.</div>",
   "770": "All the returns in life, whether in wealth, relationships, or knowledge, come from compound interest.",
   "786": "Don't take yourself so seriously. You're just a monkey with a plan.",
@@ -19,6 +21,13 @@
   "1002": "<b>Quando nossa generosidade espera a gratidão, ela perde a qualidade do altruísmo, e a expectativa de reconhecimento recoloca um ato de graça em âmbito condicional e interesseiro</b>. Em tal contexto, somos capazes de duplicar a malícia, porque o nosso <b>ressentimento pela ingratidão pode elevar a lógica de permuta</b> (via expectativa de retribuição) à condição de ofensa ou desfeita. <b>A ingratidão seria indiferente se você não esperasse nada em retorno: tanto faria o nada ou a ingratidão</b>. Assim, se você fez sem esperar uma recompensa, não a considere uma ingratidão, porque nunca houve nada pelo que estar grato. [...] <b>Eis então que descobrimos que há apenas a gratidão; não existe a ingratidão</b>. A ingratidão seria apenas o sentimento de não haver gratidão quando nunca deveria ter havido mesmo - já que aquele não era um ato de graça!"
  },
  "temas": {
+  "117": [
+   "Morte e finitude",
+   "Natureza humana"
+  ],
+  "190": [
+   "Solidão e silêncio"
+  ],
   "770": [
    "Tempo e memória",
    "Verdade e conhecimento"
@@ -44,7 +53,10 @@
   ]
  },
  "autor": {},
- "obra": {},
+ "obra": {
+  "117": "Fazendeiro do Ar",
+  "190": "Odes"
+ },
  "del": {
   "0": 1,
   "1": 1,

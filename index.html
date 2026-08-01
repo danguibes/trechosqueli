@@ -286,7 +286,7 @@ body.visitante .so-dono{display:none !important}
       <button class="limpar-busca" id="limparBusca" title="Limpar busca" aria-label="Limpar busca">&times;</button>
     </div>
     <button class="btn-novo so-dono" id="btnNovo">+ novo trecho</button>
-    <div class="contagem rotulo"><b id="cont">0</b> de <span id="total">0</span> trechos</div>
+    <div class="contagem rotulo" id="contagem"><b id="cont">0</b> trechos</div>
   </div>
 </header>
 
@@ -979,10 +979,20 @@ function pintaAtivos(){
     w.appendChild(b);
   }
 }
+function pintaContagem(){
+  const vivos = DADOS.reduce((n,r)=> n + (excluido(r)?0:1), 0);
+  const c = $('#contagem');
+  if(est.lixo)
+    c.innerHTML = '<b id="cont">'+atual.length+'</b> na lixeira';
+  else if(limpoDeFiltros())
+    c.innerHTML = '<b id="cont">'+vivos+'</b> trechos';
+  else
+    c.innerHTML = '<b id="cont">'+atual.length+'</b> de <span id="total">'+vivos+'</span> trechos';
+}
 function atualiza(){
   atual = filtrar();
   if(soGrupo) atual = atual.filter(r=> r.rep === soGrupo);
-  $('#cont').textContent = atual.length;
+  pintaContagem();
   const nf = DADOS.filter(marcado).length, nl = DADOS.filter(excluido).length;
   $('#nFav').textContent = nf? '('+nf+')' : '';
   $('#nLixo').textContent = nl? '('+nl+')' : '';
@@ -1082,6 +1092,21 @@ $('#limpaTudo').onclick = ()=>{
   meu = VAZIO(); base = VAZIO(); grava(); recalcFacetas(); atualiza(); aviso('Tudo apagado.');
 };
 
+/* ---------- contador de visitas ----------
+   Cole aqui o seu código do GoatCounter (só o nome, sem https:// nem .goatcounter.com).
+   Deixe vazio para não contar nada.                                              */
+const CONTADOR = '';
+
+(function(){
+  if(!CONTADOR) return;
+  try { if(localStorage.getItem('tql_token')) return; } catch(e){}   // não conta as suas visitas
+  const sc = document.createElement('script');
+  sc.async = true;
+  sc.src = 'https://gc.zgo.at/count.js';
+  sc.setAttribute('data-goatcounter', 'https://'+CONTADOR+'.goatcounter.com/count');
+  document.head.appendChild(sc);
+})();
+
 /* ---------- trechos novos ---------- */
 const CHAVE_NOVOS = 'tql_novos';
 let novosPub = [];   // já publicados, vindos do novos.json
@@ -1102,7 +1127,6 @@ function montaRegistro(n){
 function remontaDados(){
   const juntos = novosPub.concat(novosLoc.filter(n=> !novosPub.some(p=> p.id === n.id)));
   DADOS = DADOS.slice(0, ORIGINAIS).concat(juntos.map(montaRegistro));
-  $('#total').textContent = DADOS.length;
 }
 
 /* ---------- compartilhar ---------- */
@@ -1629,7 +1653,6 @@ function leHash(){
 addEventListener('hashchange', ()=>{ leHash(); atualiza(); rolaTopo(); });
 
 /* ---------- partida ---------- */
-$('#total').textContent = DADOS.length;
 aplicaModo();
 remontaDados();
 leHash();

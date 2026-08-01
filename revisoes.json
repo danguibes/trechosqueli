@@ -20,8 +20,13 @@
   "770": "All the returns in life, whether in wealth, relationships, or knowledge, come from compound interest.",
   "786": "Don't take yourself so seriously. You're just a monkey with a plan.",
   "838": "Doron, autoflagelação não é o mesmo que assumir responsabilidade. É o oposto.",
+  "912": "Escrito no Brasil, o trecho seria influência de Machado de Assis. Mas foi escrito na França por André Gide.<div><b>Dizer a verdade é vingança.</b></div>",
+  "919": "<div>we can, by the choices we make today, tell our future selves that we did everything we could.</div>",
+  "933": "Ponerse en marcha\n«Yo no camino para rejuvenecer ni para evitar envejecer, tampoco para mantenerme en forma o batir récords. Camino igual que suehio, que imagino, que pienso, por una especie de movilidad del ser y de necesidad de ligereza».<div><br></div><div>apud GEORGES PICARD, <i>Le vagabond approximatif</i> [«El vagabundo aproximativo»]</div>",
   "951": "In the end, you only have yourself.",
   "952": "Puente cuyos vecinos debían ser gentes con muy poca instrucción, <b>un mundo en el que su talento estaba como desperdiciado</b>. Alguna vez se había atrevido a hablarle de eso. Por qué no escribías o dabas conferencias, Pepín? Por qué no enseñabas en la Universidad, por ejemplo? Si habia alguien, entre sus conocidos, que parecía tener una clara vocación intelectual, una pasión por las ideas, eras tú, Pepin.<div>—Porque donde hago más falta es en mi parroquia de Bajo el Puente — se limitó a encogerse de hombros. <b>Hacen falta pastores; los intelectuales sobran más bien</b>, Orejitas. Te equivocas si crees que me cuesta hacer lo que hago. El trabajo de la parroquia me estimula mucho, me mete de pies y cabeza en la vida real. <b>En las bibliotecas, a veces uno se aísla demasiado del mundo de todos los días, de la gente común</b>. Yo no creo en tus espacios de civilización, que te apartan de los demás y te convierten en un anacoreta, ya hemos discutido mucho de eso.</div>",
+  "963": "Sabe, Sancho... todas estas tempestades são sinais de que logo o tempo há de acalmar; pois não é possível que o mal, como tampouco o bem, durem para sempre. Assim, tendo o mal persistido por tanto tempo, o bem já deve estar próximo...",
+  "970": "This approach embodies a profound paradox: by embracing what troubles us, we diminish its power.",
   "989": "Sonhar mais um sonho impossível\nLutar quando é fácil ceder\nVencer o inimigo invencível\nNegar quando a regra é vender\nSofrer a tortura implacável\nRomper a incabível prisão\nVoar num limite improvável\nTocar o inacessível chão\nÉ minha lei, é minha questão\nVirar esse mundo, cravar esse chão\nNão me importa saber se é terrível demais Quantas guerras terei que vencer por um pouco de paz? E amanhã, se esse chão que eu beijei\nFor meu leito e perdão\nVou saber que valeu delirar e morrer de paixão E assim, seja lá como for\nVai ter fim a infinita aflição\nE o mundo vai ver uma flor\nBrotar do impossível chão\nSonhar mais um sonho impossível\nLutar quando é fácil ceder",
   "991": "Guerreiros são pessoas São fortes, são frágeis Guerreiros são meninos No fundo do peito Precisam de um descanso Precisam de um remanso Precisam de um sonho Que os tornem refeitos\nÉ triste ver este homem Guerreiro menino\nCom a barra de seu tempo Por sobre seus ombros\nEu vejo que ele berra\nEu vejo que ele sangra\nA dor que traz no peito Pois ama e ama\nUm homem se humilha\nSe castram seu sonho Seu sonho é sua vida\nE a vida é trabalho\nE sem o seu trabalho\nUm homem não tem honra E sem a sua honra\nSe morre, se mata\nNão dá pra ser feliz\nNão dá pra ser feliz",
   "995": "em descobrir o limite adequado de um prazer particular e respeitá-lo. <b>Mas a caridade significa perdoar o imperdoável, ou não é virtude. A esperança significa esperar quando não há esperança, ou não seria virtude. E a fé significa acreditar no inacreditável, ou não é virtude. </b>",
@@ -69,6 +74,18 @@
   "786": [
    "Vaidade e orgulho"
   ],
+  "912": [
+   "Educação e leitura",
+   "Verdade e conhecimento"
+  ],
+  "919": [
+   "Hábito e disciplina",
+   "Virtude e caráter"
+  ],
+  "933": [
+   "Hábito e disciplina",
+   "Natureza humana"
+  ],
   "951": [
    "Solidão e silêncio",
    "Natureza humana"
@@ -78,6 +95,13 @@
    "Virtude e caráter",
    "Sentido da vida",
    "Natureza humana"
+  ],
+  "963": [
+   "Tempo e memória",
+   "Sofrimento e dor"
+  ],
+  "970": [
+   "Sofrimento e dor"
   ],
   "1002": [
    "Amor e amizade",

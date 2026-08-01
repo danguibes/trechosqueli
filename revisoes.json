@@ -8,12 +8,12 @@
   "56": "Quando se volta a Shakespeare, Girard retorna à sua teoria do desejo mimético, um desejo que não é apenas o do desejo do outro, mas do desejar o desejo do outro por um terceiro objeto. <b>“O homem deseja sempre segundo o desejo do outro”</b>, o que torna a cena dramática e romanesca sempre a cena do duplo simétrico.",
   "78": "<div>\"Não lance sua mão sobre o mancebo e não lhe faça mal\". Ao ouvir esse terceiro comando divino, Abraão não trai nem a Deus e nem a si e ainda consegue legitimar a sua transgressão em relação à cultura como sendo a verdadeira vontade do seu Deus. <b>O segredo de Abraão está na sua capacidade de não revolta. Na sua capacidade de manter um altíssimo nível de tensão interna e esperar.</b> Esperar ouvir Deus desdizer. E ele ouve. Essa capacidade de ouvir Deus expressar uma vontade diferente ...</div>",
   "117": "[CEMITÉRIO] DE BOLSO<div>Do lado esquerdo carrego meus mortos.</div><div>Por isso caminho um pouco de banda.</div>",
-  "182": "(although you should not overlook the guidelines of your culture. Life is short, and you don't have time to figure everything out on your own. <b>The wisdom of the past was hard-earned, and your dead ancestors may have something usefulto tell you</b>).\n\nDon't blame capitalism, the radical left, or the iniquity of your enemies. <b>Don't reorganize the state until you have ordered your own experience. Have some humility. If you cannot bring peace to your household, how dare you try to rule a city</b>? Let your own soul guide you.",
   "190": "Estás Só\nEstás só. Ninguém o sabe. Cala e finge. Mas finge sem fingimento.\nNada 'speres que em ti já não exista, Cada um consigo é triste.\nTens sol se há sol, ramos se ramos buscas,\nSorte se a sorte é dada.<br>",
   "301": "<div>Vários sintomas assinalam essa patologia. Um deles é o que denomino <i><b>\"moral arbitrária\":</b></i> o sujeito proclama que os valores morais não têm nenhuma base cientifica nem defesa racional possível, mas continua agindo exteriormente como se acreditasse no bem e na virtude, ou naquilo que ele assim denomina.<b> Sugere, assim, que sua conduta ética, ou aparentemente ética, não deriva do Supremo Bem, mas da sua própria, misteriosa, arbitrária e inexplicável bondade pessoal</b>. É a forma de autobeatificação mais querida dos intelectuais céticos e materialistas.</div>",
   "343": "Nosotros deberíamos aclararle a la mayoría que el éxito es una excepción. Los seres humanos de vez en cuando triunfan. Pero habitualmente desarrollan, combaten, se esfuerzan, y ganan de vez en cuando. Muy de vez en cuando.<br>",
-  "498": "A gente cabendo  nos nossos sonhos, adaptados, redimidos, <b>sabendo que ninguém tem o segredo, que ninguém pode viver duas vezes na mesma pele.</b> Roupas nas gavetas, panelas nos armários, espelhos nos banheiros, e só o mundo se debatendo, enlouquecido, no fundo de nós, <b>pronto pra nos impulsionar a lutas menores — a maior, sempre a da gente com a gente</b>",
+  "356": "Parei e parei no momento exato\nEu parei de fato não vou mais voltar <div>Parei de cantar parei de compor\nParei irredutivelmente de falar de amor</div><div>Pra finalizar parei de sorrir\nParei de dizer a verdade eu só vou mentir </div><div>Por isso eu parei\n\nParei dessa vez eu parei de fumar\nParei de beber e de misturar\nO preto e o branco\nPare com os tamancos e com os solavancos</div><div><br></div>",
   "620": "O caos havia se instaurado. Nada mais incomodava, nada mais assustava, nada mais fazia vibrar. O silêncio, os números, as notícias. Entrou tudo num automático estranho, com uma normalidade incomum, como se corpo, mente e alma estivessem anestesiados. Tudo era uma montocira de nadas, um emaranhado de dias iguais. Não via mais a hora passar, não sentia mais a vida pulsar. Não sentia. Os dias se tornaram um imenso vazio. Inerte e mergulhada na própria companhia, viu fugir dos olhos todo brilho e arder no peito uma agonia. Doía e não era vírus. Era saudade.",
+  "627": "Mikhail Bakhtin afirma: “Os atos mais importantes, que constituem a autoconsciência, são determinados pela relação com outra consciência (com o tu). A separação, o desligamento o ensimesmamento são a causa central da perda de si mesmo. Não se trata do que ocorre dentro, mas na fronteira entre a minha consciência e a consciência do outro, no limiar. O todo interior não se basta a si mesmo, está voltado para fora, dialogado, cada vivência interior está na fronteira, encontra-se com outra, e nesse encontro tenso está toda a sua essência. É o grau supremo da sociabilidade (não externa, não material, mas interna).",
   "770": "All the returns in life, whether in wealth, relationships, or knowledge, come from compound interest.",
   "786": "Don't take yourself so seriously. You're just a monkey with a plan.",
   "838": "Doron, autoflagelação não é o mesmo que assumir responsabilidade. É o oposto.",
@@ -41,14 +41,12 @@
   "190": [
    "Solidão e silêncio"
   ],
-  "498": [
-   "Liberdade e vontade",
-   "Medo e coragem",
-   "Natureza humana"
-  ],
   "620": [
    "Tempo e memória",
    "Solidão e silêncio"
+  ],
+  "627": [
+   "Natureza humana"
   ],
   "770": [
    "Tempo e memória",
@@ -76,19 +74,18 @@
  },
  "autor": {
   "343": "Marcelo Bielsa",
-  "620": "Mafe Probst",
-  "813": "São José"
+  "620": "Mafe Probst"
  },
  "obra": {
   "117": "Fazendeiro do Ar",
-  "190": "Odes",
-  "813": "Meditando com São José"
+  "190": "Odes"
  },
  "del": {
   "0": 1,
   "1": 1,
   "93": 1,
   "303": 1,
+  "626": 1,
   "833": 1,
   "986": 1
  }

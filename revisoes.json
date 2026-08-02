@@ -16,6 +16,7 @@
   "343": "Nosotros deberíamos aclararle a la mayoría que el éxito es una excepción. Los seres humanos de vez en cuando triunfan. Pero habitualmente desarrollan, combaten, se esfuerzan, y ganan de vez en cuando. Muy de vez en cuando.<br>",
   "356": "Parei e parei no momento exato\nEu parei de fato não vou mais voltar <div>Parei de cantar parei de compor\nParei irredutivelmente de falar de amor</div><div>Pra finalizar parei de sorrir\nParei de dizer a verdade eu só vou mentir </div><div>Por isso eu parei\n\nParei dessa vez eu parei de fumar\nParei de beber e de misturar\nO preto e o branco\nPare com os tamancos e com os solavancos</div><div><br></div>",
   "410": "Juliana, bonita e triste e frágil e doente e adeus, Juliana, meu imenso vazio todo cheio dela, linha que estará a qualquer tempo lá, no meu começo, não importa que fim eu vá dar ao meu novelo, quem me desfiar chegará a ela, ovo que o destino quebrou facilmente entre os dedos, Juliana que se foi sem me vestir de borboleta, sem me ver de maria-chiquinha,",
+  "575": "“Amo”, ele me dizia, “a humanidade; mas, para minha surpresa, <b>quanto mais amo a humanidade em geral, menos amo as pessoas em particular, como indivíduos</b>. Mais de uma vez, sonhei ardentemente em servir a humanidade, e talvez até subisse ao calvário por meus semelhantes, se fosse preciso, enquanto não consigo viver com ninguém por dois dias no mesmo quarto — sei por experiência. Quando vejo alguém perto de mim, sua personalidade oprime meu amor-próprio e incomoda a minha liberdade. Em vinte e quatro horas, posso chegar a sentir antipatia pelas melhores pessoas.",
   "620": "O caos havia se instaurado. Nada mais incomodava, nada mais assustava, nada mais fazia vibrar. O silêncio, os números, as notícias. Entrou tudo num automático estranho, com uma normalidade incomum, como se corpo, mente e alma estivessem anestesiados. Tudo era uma montocira de nadas, um emaranhado de dias iguais. Não via mais a hora passar, não sentia mais a vida pulsar. Não sentia. Os dias se tornaram um imenso vazio. Inerte e mergulhada na própria companhia, viu fugir dos olhos todo brilho e arder no peito uma agonia. Doía e não era vírus. Era saudade.",
   "625": "Nesse ponto Dostoiévski se opõe a toda a cultura decadente e idealista (individualista), à cultura da solidão de princípio e incontrastável. Ele afirma a impossibilidade da solidão, da solidão ilusória. O próprio ser do homem (tanto interno quanto externo) é convívio mais profundo. <b>Ser significa conviver</b>. (...) <b>Ser significa ser para o outro e, através dele, para si</b>. O homem não tem um território interior soberano, está todo e sempre na fronteira, olhando para dentro de si <b>ele olha o outro nos olhos ou com os olhos do outro</b>”.",
   "627": "Mikhail Bakhtin afirma: “Os atos mais importantes, que constituem a autoconsciência, são determinados pela relação com outra consciência (com o tu). A separação, o desligamento o ensimesmamento são a causa central da perda de si mesmo. Não se trata do que ocorre dentro, mas na fronteira entre a minha consciência e a consciência do outro, no limiar. O todo interior não se basta a si mesmo, está voltado para fora, dialogado, cada vivência interior está na fronteira, encontra-se com outra, e nesse encontro tenso está toda a sua essência. É o grau supremo da sociabilidade (não externa, não material, mas interna).",
@@ -24,6 +25,11 @@
   "770": "All the returns in life, whether in wealth, relationships, or knowledge, come from compound interest.",
   "786": "Don't take yourself so seriously. You're just a monkey with a plan.",
   "838": "Doron, autoflagelação não é o mesmo que assumir responsabilidade. É o oposto.",
+  "865": "(GRAZIANO)<div>Signior Antônio, não tem bom aspecto</div><div><b>É por levar o mundo tão a sério</b></div><div><b>Ele não vale um preço assim tão caro.</b></div><div>Mas creia-me: mudou de forma incrível.</div><div><br></div><div>(ANTÔNIO)</div><div>O mundo é mundo para mim, Graziano</div><div><b>Um palco, com um papel pra cada um</b></div><div><b>E o meu é triste.</b></div>",
+  "872": "A MODEL OF LATE STOIC PRACTICE",
+  "876": "Àquele que puder ser sábio, não lhe perdoamos que não o seja.",
+  "885": "One day you'll understand that it's harder to be kind than clever.",
+  "900": "You don't have a right to the cards you believe you should have been dealt.",
   "912": "Escrito no Brasil, o trecho seria influência de Machado de Assis. Mas foi escrito na França por André Gide.<div><b>Dizer a verdade é vingança.</b></div>",
   "919": "<div>we can, by the choices we make today, tell our future selves that we did everything we could.</div>",
   "933": "Ponerse en marcha\n«Yo no camino para rejuvenecer ni para evitar envejecer, tampoco para mantenerme en forma o batir récords. Camino igual que suehio, que imagino, que pienso, por una especie de movilidad del ser y de necesidad de ligereza».<div><br></div><div>apud GEORGES PICARD, <i>Le vagabond approximatif</i> [«El vagabundo aproximativo»]</div>",
@@ -59,6 +65,10 @@
    "Fé e Deus",
    "Virtude e caráter"
   ],
+  "575": [
+   "Amor e amizade",
+   "Natureza humana"
+  ],
   "620": [
    "Tempo e memória",
    "Solidão e silêncio"
@@ -83,6 +93,18 @@
   ],
   "786": [
    "Vaidade e orgulho"
+  ],
+  "865": [
+   "Alegria e felicidade",
+   "Natureza humana",
+   "Sentido da vida"
+  ],
+  "885": [
+   "Virtude e caráter"
+  ],
+  "900": [
+   "Natureza humana",
+   "Sentido da vida"
   ],
   "912": [
    "Educação e leitura",

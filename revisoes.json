@@ -19,6 +19,10 @@
   "625": "Nesse ponto Dostoiévski se opõe a toda a cultura decadente e idealista (individualista), à cultura da solidão de princípio e incontrastável. Ele afirma a impossibilidade da solidão, da solidão ilusória. O próprio ser do homem (tanto interno quanto externo) é convívio mais profundo. <b>Ser significa conviver</b>. (...) <b>Ser significa ser para o outro e, através dele, para si</b>. O homem não tem um território interior soberano, está todo e sempre na fronteira, olhando para dentro de si <b>ele olha o outro nos olhos ou com os olhos do outro</b>”.",
   "627": "Mikhail Bakhtin afirma: “Os atos mais importantes, que constituem a autoconsciência, são determinados pela relação com outra consciência (com o tu). A separação, o desligamento o ensimesmamento são a causa central da perda de si mesmo. Não se trata do que ocorre dentro, mas na fronteira entre a minha consciência e a consciência do outro, no limiar. O todo interior não se basta a si mesmo, está voltado para fora, dialogado, cada vivência interior está na fronteira, encontra-se com outra, e nesse encontro tenso está toda a sua essência. É o grau supremo da sociabilidade (não externa, não material, mas interna).",
   "646": "<b>É bem conhecido o fenômeno de imaturidade psicológica, muito frequente na adolescência pelo qual o indivíduo faz mais questão de ter convicções e ideias próprias do que convicções e ideias certas.</b> O que vem de fora lhe parece imposição restritiva, pressão paterna ou uma última e asfixiante solicitude materna, e assim esta alma se fecha sobre si mesma, e procura, entre os recursos que possui, formar um sistema de ideias genuinamente suas, incontestavelmente próprias. <b>Por uma cruel ironia do psiquismo ressentido e imaturo, são esses mesmos que mais recebem influências de fora, desde que elas cheguem disfarçadas e não tenham caráter de lição</b>. <div>Seguem a influência do pequeno grupo, seguem a moda, cujos ditames são proclamados nos pequenos núcleos dos iniciados, e, por fim, alastrada a ideia em voga, tornam-se em rebanhos de carneiros os que apregoavam ser lobos</div>",
+  "675": "Até logo, até logo, companheiro,<div>Guardo-te no meu peito e te asseguro:</div><div>O nosso afastamento passageiro</div><div>É sinal de um encontro no futuro. </div><div><br></div><div>Adeus, amigo, sem mãos nem palavras. </div><div>Não faças um sobrolho pensativo. </div><div>Se morrer, nesta vida, não é novo,</div><div>Tampouco há novidade em estar vivo.</div>",
+  "681": "O tempo se encarrega de botar as nossas dores em prateleiras cada vez mais altas, mas elas sempre estarão conosco.",
+  "685": "Sim, sinto falta da gente, sofro muito por isso, mas não, eu nunca abriria mão de você. Fica tranquilo, vou lembrar dos momentos que não vivemos, sentir saudade do nosso futuro e vivê-lo por nós. ",
+  "687": "All men's miseries derive from not being able to sit in a quiet room alone.",
   "707": "Não havia solução para mim fora da mulher, porque a mulher é a base, é o apoio, o chão, a Terra em que recobramos as forças despendidas em nossas expedições. Nós partimos, nós homens. Percorremos os epiciclos complicados das órbitas masculinas; descobrimos continentes; inventamos prodígios; combatemos nos ares e nos mares; somos fortes. <b>Somos fortes, desde que não se rompa o invisível e flexível cordão umbilical que nos prende à retaguarda. E a retaguarda é a mulher.</b>",
   "725": "Será que a gente desaprendeu a esperar?",
   "749": "Liberdade é saber quais são as suas prisões.",
@@ -89,6 +93,14 @@
    "Liberdade e vontade",
    "Natureza humana",
    "Verdade e conhecimento"
+  ],
+  "675": [
+   "Morte e finitude",
+   "Amor e amizade"
+  ],
+  "681": [
+   "Sofrimento e dor",
+   "Tempo e memória"
   ],
   "707": [
    "Vaidade e orgulho",
@@ -183,6 +195,8 @@
  "autor": {
   "343": "Marcelo Bielsa",
   "620": "Mafe Probst",
+  "675": "Sierguei Iessienin",
+  "687": "Brian Solis",
   "769": "Ryan Holiday, Sêneca"
  },
  "obra": {

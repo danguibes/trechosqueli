@@ -20,6 +20,9 @@
   "627": "Mikhail Bakhtin afirma: “Os atos mais importantes, que constituem a autoconsciência, são determinados pela relação com outra consciência (com o tu). A separação, o desligamento o ensimesmamento são a causa central da perda de si mesmo. Não se trata do que ocorre dentro, mas na fronteira entre a minha consciência e a consciência do outro, no limiar. O todo interior não se basta a si mesmo, está voltado para fora, dialogado, cada vivência interior está na fronteira, encontra-se com outra, e nesse encontro tenso está toda a sua essência. É o grau supremo da sociabilidade (não externa, não material, mas interna).",
   "646": "<b>É bem conhecido o fenômeno de imaturidade psicológica, muito frequente na adolescência pelo qual o indivíduo faz mais questão de ter convicções e ideias próprias do que convicções e ideias certas.</b> O que vem de fora lhe parece imposição restritiva, pressão paterna ou uma última e asfixiante solicitude materna, e assim esta alma se fecha sobre si mesma, e procura, entre os recursos que possui, formar um sistema de ideias genuinamente suas, incontestavelmente próprias. <b>Por uma cruel ironia do psiquismo ressentido e imaturo, são esses mesmos que mais recebem influências de fora, desde que elas cheguem disfarçadas e não tenham caráter de lição</b>. <div>Seguem a influência do pequeno grupo, seguem a moda, cujos ditames são proclamados nos pequenos núcleos dos iniciados, e, por fim, alastrada a ideia em voga, tornam-se em rebanhos de carneiros os que apregoavam ser lobos</div>",
   "749": "Liberdade é saber quais são as suas prisões.",
+  "761": "Uma crença dogmática em valores objetivos é necessária para a própria idéia de uma regra que não seja tirânica ou de uma obediência que não seja servil.",
+  "767": "la vida sería mucho más agradable si uno pudiera llevarse a donde quiera que fuera, los sabores y olores de la casa materna.",
+  "769": "How many have laid waste to your life when you weren't aware of what you were losing, how much was wasted in pointless grief, foolish joy, greedy desire, and social amusements—how little of your own was left to you. You will realize you are dying before your time!<div><br></div><div>apud Sêneca.</div>",
   "770": "All the returns in life, whether in wealth, relationships, or knowledge, come from compound interest.",
   "780": "A alma tem suas necessidades que não são bem atendidas por contracheques e privilégios.",
   "783": "If someone sends you an angry email but you never see it, did it actually happen?",
@@ -84,6 +87,18 @@
    "Liberdade e vontade",
    "Natureza humana",
    "Verdade e conhecimento"
+  ],
+  "761": [
+   "Política e poder",
+   "Virtude e caráter"
+  ],
+  "767": [
+   "Tempo e memória",
+   "Alegria e felicidade"
+  ],
+  "769": [
+   "Morte e finitude",
+   "Natureza humana"
   ],
   "770": [
    "Tempo e memória",
@@ -157,7 +172,8 @@
  },
  "autor": {
   "343": "Marcelo Bielsa",
-  "620": "Mafe Probst"
+  "620": "Mafe Probst",
+  "769": "Ryan Holiday, Sêneca"
  },
  "obra": {
   "117": "Fazendeiro do Ar",

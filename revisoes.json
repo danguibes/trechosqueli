@@ -9,6 +9,7 @@
   "56": "Quando se volta a Shakespeare, Girard retorna à sua teoria do desejo mimético, um desejo que não é apenas o do desejo do outro, mas do desejar o desejo do outro por um terceiro objeto. <b>“O homem deseja sempre segundo o desejo do outro”</b>, o que torna a cena dramática e romanesca sempre a cena do duplo simétrico.",
   "78": "<div>\"Não lance sua mão sobre o mancebo e não lhe faça mal\". Ao ouvir esse terceiro comando divino, Abraão não trai nem a Deus e nem a si e ainda consegue legitimar a sua transgressão em relação à cultura como sendo a verdadeira vontade do seu Deus. <b>O segredo de Abraão está na sua capacidade de não revolta. Na sua capacidade de manter um altíssimo nível de tensão interna e esperar.</b> Esperar ouvir Deus desdizer. E ele ouve. Essa capacidade de ouvir Deus expressar uma vontade diferente ...</div>",
   "117": "[CEMITÉRIO] DE BOLSO<div>Do lado esquerdo carrego meus mortos.</div><div>Por isso caminho um pouco de banda.</div>",
+  "174": "nothing is safer<div>than the sound of you</div><div>reading out loud to me</div>",
   "190": "Estás Só\nEstás só. Ninguém o sabe. Cala e finge. Mas finge sem fingimento.\nNada 'speres que em ti já não exista, Cada um consigo é triste.\nTens sol se há sol, ramos se ramos buscas,\nSorte se a sorte é dada.<br>",
   "301": "<div>Vários sintomas assinalam essa patologia. Um deles é o que denomino <i><b>\"moral arbitrária\":</b></i> o sujeito proclama que os valores morais não têm nenhuma base cientifica nem defesa racional possível, mas continua agindo exteriormente como se acreditasse no bem e na virtude, ou naquilo que ele assim denomina.<b> Sugere, assim, que sua conduta ética, ou aparentemente ética, não deriva do Supremo Bem, mas da sua própria, misteriosa, arbitrária e inexplicável bondade pessoal</b>. É a forma de autobeatificação mais querida dos intelectuais céticos e materialistas.</div>",
   "302": "Tanto em Platão quanto em Aristóteles ou em toda a filosofia escolástica, <b>o Supremo Bem não é um “valor”, muito menos uma “criação cultural”, mas a realidade suprema, o <i>ens realissimum</i>, fundamento primeiro e objeto último de todo conhecimento.</b><div>A repulsa que isso desperta na sensibilidade moderna é notória. Desde Kant, a separação abissal e intransponível entre “realidade” e “valor” consagrou-se como um dogma incontestável da mitologia universitária, sem que ninguém perceba</div>",
@@ -82,6 +83,10 @@
   "117": [
    "Morte e finitude",
    "Natureza humana"
+  ],
+  "174": [
+   "Medo e coragem",
+   "Amor e amizade"
   ],
   "190": [
    "Solidão e silêncio"
@@ -306,7 +311,9 @@
   "171": 1,
   "175": 1,
   "191": 1,
+  "192": 1,
   "195": 1,
+  "196": 1,
   "199": 1,
   "208": 1,
   "215": 1,
@@ -314,10 +321,13 @@
   "248": 1,
   "249": 1,
   "281": 1,
+  "290": 1,
   "291": 1,
   "303": 1,
+  "311": 1,
   "313": 1,
   "322": 1,
+  "327": 1,
   "332": 1,
   "384": 1,
   "390": 1,

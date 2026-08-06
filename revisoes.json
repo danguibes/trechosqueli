@@ -14,6 +14,9 @@
   "78": "<div>\"Não lance sua mão sobre o mancebo e não lhe faça mal\". Ao ouvir esse terceiro comando divino, Abraão não trai nem a Deus e nem a si e ainda consegue legitimar a sua transgressão em relação à cultura como sendo a verdadeira vontade do seu Deus. <b>O segredo de Abraão está na sua capacidade de não revolta. Na sua capacidade de manter um altíssimo nível de tensão interna e esperar.</b> Esperar ouvir Deus desdizer. E ele ouve. Essa capacidade de ouvir Deus expressar uma vontade diferente ...</div>",
   "86": "produzir o que podemos chamar de Homens sem Peito. E abominável que não raro dêem a isso o nome de Intelectuais. Isso lhes dá a chance de dizer que quem os ataca, está atacando a Inteligência. Não é verdade. Eles não se distinguem dos demais homens por uma habilidade especial para encontrar a verdade nem por um ardor insuperável ao persegui-la. Seria de fato es-tranho se assim fossem: uma perseverante devoção à verdade, um sentido agudo de honra intelectual não podem ser mantidos por muito tempo sem a ajuda dos sentimentos que Gaius e Titius desmascarariam com a facilidade habitual. Não é o excesso de pensamento que os caracteriza, mas uma carência de emoções férteis e generosas.<b> Suas cabeças não são maiores que as comuns: é a atrofia do peito logo abaixo que faz com que pareçam assim.</b>",
   "117": "[CEMITÉRIO] DE BOLSO<div>Do lado esquerdo carrego meus mortos.</div><div>Por isso caminho um pouco de banda.</div>",
+  "151": "E sendo objeto de mentiras a elas não recorreres, Ou, sendo odiado, não cederes ao ódio, E nem assim parecer bom demais nem falar como sábio demais:<div>Se puderes sonhar, Se puderes pensar mas não deixar que os sonhos te dominem, e não transformar os pensamentos em teu objetivo,</div><div><b>Se puderes receber Triunfo e Derrota</b></div><div><b>E tratar esses dois impostores de igual maneira,</b></div><div>Se puderes escutar a verdade do que disseste,</div><div>Deturpada por patifes para transformá-la em armadilha para os tolos,</div><div>E olhares as coisas pelas quais deste a vida, quebradas,</div><div>E te curvares e as reconstruíres com gastas ferramentas:</div><div>Se puderes fazer uma aposta com todos os teus ganhos</div><div>E arriscá-los em um único lance,</div><div>E perder, e recomeçar do nada,</div><div>E nunca uma palavra pronunciar sobre tua perda,</div><div>Se puderes forçar o coração, nervo e coragem,</div><div>A voltarem a te servir depois de acabados,</div><div><b>E resistires quando nada mais em ti existir</b></div><div><b>Exceto a Vontade, que lhe diz: \"Resiste!\"</b></div><div>Se puderes conversar com a turba e conservar tua virtude</div><div>Ou andar com reis sem perderes a humanidade,</div><div>Se nem inimigo nem amigo carinhoso puderem te ferir,</div><div>Se, para ti, todos os homens têm valor, mas nenhum deles demais,</div>",
+  "161": "O estado natural de um torcedor de futebol é o da amarga desilusão, não importa qual seja o placar.",
+  "173": "S: Se muito transbordar, muito se perde.<div>C: Certamente.</div><div>S: A vida de que falas não é a de um morto ou de uma pedra, mas de um abutre. Tua ideia é, então, apenas comer quando se tem fome?</div><div>C: Sim.</div><div>S: E beber, quando se tem sede?</div><div>C: Sim. <b>Viver é desejar, e ser feliz é satisfazer os desejos.</b></div><div>(...)</div><div>S: Escuta-me, que torno a argumentar. <b>O prazer e o bem são a mesma coisa? Não</b>, concordamos Cálicles e eu. Deve-se procurar</div>",
   "174": "nothing is safer<div>than the sound of you</div><div>reading out loud to me</div>",
   "178": "So: <b>no value, no meaning. Between value systems, however, there is the possibility of conflict.</b> We are thus eternally caught between the most diamantine rock and the hardest of places: loss of group-centred belief renders life chaotic, miserable, intolerable; presence of group-centred belief makes conflict with other groups inevitable. <b>In the West, we have been withdrawing from our tradition-, religion- and even nation-centred cultures, partly to decrease the danger of group conflict. But we are increasingly falling prey to the desperation of meaninglessness, and that is no improvement at all.</b>",
   "188": "Não devo carregar sozinho o que, na realidade, nunca poderia carregar sozinho. Os numerosos santos de Deus protegem-me, amparam-me e guiam-me.",
@@ -109,6 +112,15 @@
   ],
   "117": [
    "Morte e finitude",
+   "Natureza humana"
+  ],
+  "161": [
+   "Alegria e felicidade",
+   "Sofrimento e dor"
+  ],
+  "173": [
+   "Alegria e felicidade",
+   "Verdade e conhecimento",
    "Natureza humana"
   ],
   "174": [
@@ -332,6 +344,7 @@
   ]
  },
  "autor": {
+  "151": "Rudyard Kipling",
   "343": "Marcelo Bielsa",
   "421": "Eddie Vedder",
   "620": "Mafe Probst",

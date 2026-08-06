@@ -90,6 +90,7 @@
   "885": "One day you'll understand that it's harder to be kind than clever.",
   "900": "You don't have a right to the cards you believe you should have been dealt.",
   "912": "Escrito no Brasil, o trecho seria influência de Machado de Assis. Mas foi escrito na França por André Gide.<div><b>Dizer a verdade é vingança.</b></div>",
+  "918": "Há um ditado em hebraico que diz que uma pessoa pode ser conhecida por <b>Kosso, Kisso e Kaasso</b> - por <b>seu copo, seu bolso e sua ira</b>. Este jogo de palavras nos fala dos três universos de troca mais importantes e comuns entre os seres humanos e o exterior.",
   "919": "<div>we can, by the choices we make today, tell our future selves that we did everything we could.</div>",
   "933": "Ponerse en marcha\n«Yo no camino para rejuvenecer ni para evitar envejecer, tampoco para mantenerme en forma o batir récords. Camino igual que suehio, que imagino, que pienso, por una especie de movilidad del ser y de necesidad de ligereza».<div><br></div><div>apud GEORGES PICARD, <i>Le vagabond approximatif</i> [«El vagabundo aproximativo»]</div>",
   "942": "If you can force your heart and nerve and sinew<div>To serve your turn long after they are gone,</div><div><b>And so hold on when there is nothing in you</b></div><div><b>Except the Will which says to them: 'Hold on!'</b><div><b>If you can talk with crowds and keep your virtue,</b></div><div><b>Or walk with Kings-nor lose the common touch,</b></div><div><b>If neither foes nor loving friends can hurt you,</b></div><div><b>If all men count with you, but none too much;</b></div><div>If you can fill the unforgiving minute</div><div>With sixty seconds' worth of distance run,</div><div><b>Yours is the Earth and everything that's in it,</b></div><div><b>And-which is more-you'll be a Man, my son!</b></div></div>",
@@ -359,6 +360,10 @@
   "912": [
    "Educação e leitura",
    "Verdade e conhecimento"
+  ],
+  "918": [
+   "Educação e leitura",
+   "Natureza humana"
   ],
   "919": [
    "Hábito e disciplina",

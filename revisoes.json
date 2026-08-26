@@ -6,6 +6,7 @@
   "548": 1,
   "646": 1,
   "665": 1,
+  "772": 1,
   "904": 1,
   "995": 1,
   "1002": 1
@@ -111,6 +112,7 @@
   "767": "la vida sería mucho más agradable si uno pudiera llevarse a donde quiera que fuera, los sabores y olores de la casa materna.",
   "769": "How many have laid waste to your life when you weren't aware of what you were losing, how much was wasted in pointless grief, foolish joy, greedy desire, and social amusements—how little of your own was left to you. You will realize you are dying before your time!<div><br></div><div>apud Sêneca.</div>",
   "770": "All the returns in life, whether in wealth, relationships, or knowledge, come from compound interest.",
+  "772": "<b>A passagem do meio ocorre quando a pessoa se vê obrigada a encarar a sua vida como algo mais do que mera sucessão linear de anos</b>. Quanto mais ela permanece inconsciente, o que é bem fácil de acontecer em nossa cultura, mais provável é que ela encare a vida apenas como uma sucessão de momentos que conduzem a um vago objetivo, cujo propósito se tornará claro em seu devido tempo. Quando a pessoa é lançada em direção à consciência, uma dimensão vertical, kairós, intercruza o plano horizontal da vida; o intervalo de vida da pessoa é expressado numa perspectiva profunda: <b>“Quem sou, então, e para onde estou indo?”</b> A passagem do meio tem início quando o indivíduo se vê obrigado a formular novamente a pergunta sobre o significado que percorria a imaginação da criança, mas que foi apagado com o passar dos anos. A passagem do meio começa quando a pessoa precisa enfrentar questões até então evitadas. ",
   "780": "A alma tem suas necessidades que não são bem atendidas por contracheques e privilégios.",
   "783": "If someone sends you an angry email but you never see it, did it actually happen?",
   "786": "Don't take yourself so seriously. You're just a monkey with a plan.",
@@ -448,6 +450,11 @@
   "770": [
    "Tempo e memória",
    "Verdade e conhecimento"
+  ],
+  "772": [
+   "Tempo e memória",
+   "Morte e finitude",
+   "Sentido da vida"
   ],
   "780": [
    "Virtude e caráter",

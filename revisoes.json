@@ -13,6 +13,7 @@
  },
  "htm": {
   "4": "<b>Nunca houve, e nunca haverá, um juízo de valor radicalmente novo na história do mundo</b>. Tudo aquilo que pretende ser um novo sistema ou (como se diz agora) uma \"ideologia\" consiste em fragmentos do próprio <i>Tao</i>, <b>arbitrariamente arrancados de seu contexto e então hipertrofiados até a loucura em seu isolamento</b>.",
+  "11": "evocam e tentam despertar um sentimento quentinho e autocongratulatório de simpatia, que assegura à pessoa que o experimenta que ela é um ser moral capaz de ter empatia pelos outros, mas um sentimento que não exige nada mais dela. O calor confortante e gratuito do sentimento é um fim em si mesmo, uma mera muleta para a autoestima.",
   "22": "Parece o mais verossímil que seja o dinheiro um fator social secundário, incapaz por si mesmo de inspirar a grande arquitetura da sociedade. É uma das forças principais que atuam no equilíbrio de todo ofício coletivo, mas não é a musa de seu estilo tectônico. Pelo contrário, <b>se cedem os verdadeiros e normais poderes históricos - raça religião, política, idéias -, toda a energia social vacante é absorvida por ele</b>. Diríamos, pois, que quando se volatilizam os demais prestígios resta sempre o dinheiro, que, por ser elemento material, não pode volatilizar-se. Ou, de outro modo:<b> o dinheiro não manda mais senão quando não há outro princípio que mande.</b>",
   "31": "A luta contra os pais é um teatrinho, um jogo de cartas marcadas no qual um dos contendores luta para vencer e o outro para ajudá-lo a vencer.",
   "33": "ver o que está por trás de alguma coisa reside justamente nisso: em ver, através dessa coisa, um objeto real. É bom, que a janela seja translúcida, justamente porque a rua ou o jardim além dela são opacos. E se também fosse possível ver através do jardim? Não há nenhuma utilidade em tentar “enxergar o que está por trás dos primeiros princípios. <b>Se você “enxergar o que está por trás” de todas as coisas sem exceção, então tudo se tornará transparente para você. Mas um mundo completamente transparente é um mundo invisível. “Ver o que está por trás” de todas as coisas é o mesmo que não ver nada.</b>",
@@ -49,6 +50,7 @@
   "206": "Em vez de especular sobre as origens remotas do crime (causas hereditárias, pulsionais e afetivas, sociais e ambiente cosmoconceitual), acabando por justificá-lo, podemos desde logo voltar nossa atenção para sua causa imediata, qual seja, a mentalidade criminosa em ato, buscando a responsabilização individual que deriva da liberdade de escolha do agente. <div>[...]</div><div>A neutralidade moral, que começa com os intelectuais, logo se difunde para o restante da sociedade e oferece uma absolvição antecipada para aqueles predispostos a agir por impulso. Age como solvente de qualquer freio remanescente. Os criminosos aprendem a ver seus crimes não como resultado de decisões que eles mesmos tomaram, mas como um vetor de forças abstratas e impessoais em que não exercem influência alguma.</div>",
   "220": "Quanto mais vazia a carroça maior é o barulho que faz.",
   "242": "THE LINE DIVIDING GOOD &amp; EVIL CUTS THROUGH THE HEART OF EVERY HUMAN BEING.",
+  "246": "O introvertido é uma pessoa sensível que se sente confortável tendo a si mesmo como companhia. Ele quer entender o que se passa a seu redor, mas não sente necessidade de alardear seus pontos de vista. Entre um filósofo em causa própria e um alienado social, ele se encaixa perfeitamente na primeira definição, mas a arbitrariedade das convenções tende a empurrá-lo para a segunda. Porque, ao buscar líderes em seus quadros, a maioria das empresas parece confundir liderança com autopromoção e exuberância. O introvertido sabe que dificilmente será o general que sai brandindo a espada à frente de suas tropas, mas tem tudo para ser o estrategista cujo plano garantirá a vitória na batalha.",
   "263": "Na filosofia e na estética dos antigos, não surpreende que a memória seja a mãe das musas.<div>[...]</div><div>A educação moderna é vítima da amnésia institucionalizada, que priva o espírito infantil de toda referência vivida. Ela substitui aquilo que era decorado pelo caleidoscópio transitório do efêmero. O tempo se encontra reduzido ao instantâneo. [...] Aquilo que não aprendemos nem sabemos de cor, dentro dos limites de nossas capacidades sem insuficientes, não amamos verdadeiramente.</div>",
   "268": "Nossa insegurança é causada pelo porre ideológico que esta nação tomou nas últimas décadas. Agora, vivemos a ressaca. ",
   "275": "O direito de punir é um conceito cientifico, isto é, uma fórmula, uma espécie de notação algébrica, por meio da qual a ciência designa o fato geral e quase quotidiano da imposição de penas aos criminosos, aos que perturbam e ofendem, por seus atos, a ordem social. Pôr em dúvida, ou perguntar simplesmente, se existe tal direito, importa perguntar: 1º, se há com efeito crimes ou ações perturbadoras da harmonia pública, e se o homem é realmente capaz de as praticar; 2°, se a sociedade empregando medidas repressivas contra o crime, procede de um modo racional e adaptado ao seu destino, se satisfaz assim uma necessidade que lhe é imposta pela mesma lei da sua existência. (...) Podem frases teoréticas encobrir a verdadeira feição da coisa, mas no fundo o que resta é o fato incontestável de que punir é sacrificar, sacrificar em todo ou em parte, o indivíduo a bem da comunhão social, sacrifício mais ou menos cruel conforme o grau de civilização deste ou daquele povo nesta ou naquela época dada, mas sacrifício necessário, que, se por um lado não se acomoda à rigorosa medida jurídica, por outro lado também não pode ser abolido por efeito de um sentimentalismo pretendido humanitário, que não raras vezes quer ver extintas, por amor da humanidade, coisas sem as quais a humanidade não poderia<div>talvez existir\". (Tobias Barreto, in Estudos de Direito, 1ª Edição, Bookseller: São Paulo, 2000, pp. 166 e 173).</div>",
@@ -151,6 +153,11 @@
   "4": [
    "Virtude e caráter",
    "Verdade e conhecimento"
+  ],
+  "11": [
+   "Sentido da vida",
+   "Vaidade e orgulho",
+   "Virtude e caráter"
   ],
   "22": [
    "Trabalho e dinheiro",
@@ -262,6 +269,11 @@
   "242": [
    "Verdade e conhecimento",
    "Fé e Deus"
+  ],
+  "246": [
+   "Educação e leitura",
+   "Vaidade e orgulho",
+   "Natureza humana"
   ],
   "268": [
    "Política e poder"
